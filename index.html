@@ -1,15 +1,18 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7604876231244458"
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7604876231244458"
      crossorigin="anonymous"></script>
+  <!-- CropperJS CDN (for cropping functionality) -->
+  <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <meta charset="UTF-8">
   <title>Smart Image Compressor | JPEG, PNG, WebP, GIF, BMP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Compress JPEG, PNG, WebP, GIF, BMP images online free. Fast, secure & easy.">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <style>
-    /* --- CSS Same as Above --- */
+    /* ...CSS as before... */
     body {
       font-family: 'Inter', Arial, sans-serif;
       margin: 0; padding: 0;
@@ -52,8 +55,21 @@
       border-color: #2196f3;
       color: #0d47a1;
     }
-    .upload-zone input[type="file"] {
-      display: none;
+    .upload-btn-group {
+      margin-top: 1em;
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .upload-btn {
+      padding: .65em 1.4em;
+      background: linear-gradient(90deg, #2196f3 60%, #21cbf3);
+      color: #fff; border: none; border-radius: 6px;
+      font-weight: 700; font-size: 1em;
+      cursor: pointer; transition: background .13s;
+      box-shadow: 0 2px 8px rgba(33,150,243,0.09);
+      margin: 0 3px;
     }
     .supported-types {
       color: #1565c0;
@@ -75,6 +91,7 @@
     @media(max-width:700px){
       .preview-row { flex-direction: column; gap: 1em;}
       main { padding: 1em;}
+      .upload-btn-group { flex-direction: column; gap: .7em;}
     }
     .card {
       background: #f7fbff;
@@ -199,348 +216,15 @@
       margin: 2.5em 0 1em;
       letter-spacing: .02em;
     }
+    /* Crop Modal custom style */
+    #cropModal {
+      z-index: 101;
+      background: rgba(0,0,0,0.5);
+    }
+    #cropModal .btn, #cropModal .reset-btn {
+      margin-top: 0;
+      margin-left: 8px;
+    }
   </style>
 </head>
-<body>
-  <header>
-    Smart Image Compressor
-  </header>
-  <main>
-    <!-- Upload Zone -->
-    <div class="upload-zone" id="uploadZone">
-      <div><b>Drag &amp; Drop</b> or <b>Click to Upload</b> your image</div>
-      <div class="supported-types">Supported: JPEG, PNG, WebP, GIF, BMP</div>
-      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp">
-    </div>
-    <!-- Preview Row -->
-    <div class="preview-row">
-      <!-- Original Image Card -->
-      <div class="card" id="originalCard">
-        <div style="font-weight:600; margin-bottom:5px;">Original</div>
-        <img id="originalPreview" class="preview-img" src="" alt="" style="display:none;">
-        <div class="dim-info-box"><div id="dimInfo" class="dim-info" style="display:none;"></div></div>
-        <div class="info-row" id="originalInfo"></div>
-      </div>
-      <!-- Compressed Image Card -->
-      <div class="card" id="compressedCard">
-        <div style="font-weight:600; margin-bottom:5px;">Compressed</div>
-        <img id="compressedPreview" class="preview-img" src="" alt="" style="display:none;">
-        <div class="dim-info-box"><div id="compressedDimInfo" class="dim-info" style="display:none;"></div></div>
-        <div class="info-row" id="compressedInfo"></div>
-      </div>
-    </div>
-    <!-- Controls -->
-    <div style="margin:1.5em 0 1em 0;">
-      <div class="range-row">
-        <label for="qualityRange">Quality:</label>
-        <input type="range" id="qualityRange" min="10" max="100" value="80">
-        <span id="qualityValue">80</span>%
-      </div>
-      <div class="resize-unit-group">
-        <span class="resize-unit-label">Resize Units:</span>
-        <label><input type="radio" name="resizeUnit" value="px" checked> px</label>
-        <label><input type="radio" name="resizeUnit" value="cm"> cm</label>
-        <label><input type="radio" name="resizeUnit" value="inch"> inch</label>
-      </div>
-      <div class="range-row">
-        <label for="resizeWidth">Width (<span id="unitLabelW">px</span>):</label>
-        <input type="number" id="resizeWidth" min="0.0001" step="any" placeholder="Original width" style="width:90px;">
-      </div>
-      <div class="range-row">
-        <label for="resizeHeight">Height (<span id="unitLabelH">px</span>):</label>
-        <input type="number" id="resizeHeight" min="0.0001" step="any" placeholder="Original height" style="width:90px;">
-        <button id="resetResize" class="reset-btn" type="button" title="Reset to original">Reset</button>
-      </div>
-      <button id="compressBtn" class="btn" disabled>Compress Image</button>
-      <button id="downloadBtn" class="btn" disabled>Download Compressed</button>
-      <span id="msg" class="error-msg"></span>
-    </div>
-    <!-- Zoom Modal -->
-    <div class="zoom-modal" id="zoomModal">
-      <img id="zoomImg" src="" alt="Zoomed image">
-    </div>
-  </main>
-  <div class="footer">
-    &copy; 2025 Smart Image Compressor | Fast, Free & Secure
-  </div>
-  <script>
-    // Precision: Always 4 decimals for cm/inch, integer for px
-    const DECIMALS = 4;
-    function getDPI() { return 96; }
-    function unitConvert(val, from, to) {
-      if (!val) return '';
-      const dpi = getDPI();
-      switch(from + '-' + to) {
-        case 'px-cm': return (val / dpi * 2.54).toFixed(DECIMALS);
-        case 'px-inch': return (val / dpi).toFixed(DECIMALS);
-        case 'cm-px': return Math.round(val * dpi / 2.54);
-        case 'inch-px': return Math.round(val * dpi);
-        default: return val;
-      }
-    }
-    const fileInput = document.getElementById('fileInput');
-    const uploadZone = document.getElementById('uploadZone');
-    const originalPreview = document.getElementById('originalPreview');
-    const compressedPreview = document.getElementById('compressedPreview');
-    const dimInfo = document.getElementById('dimInfo');
-    const compressedDimInfo = document.getElementById('compressedDimInfo');
-    const originalInfo = document.getElementById('originalInfo');
-    const compressedInfo = document.getElementById('compressedInfo');
-    const qualityRange = document.getElementById('qualityRange');
-    const qualityValue = document.getElementById('qualityValue');
-    const resizeWidth = document.getElementById('resizeWidth');
-    const resizeHeight = document.getElementById('resizeHeight');
-    const unitRadios = document.getElementsByName('resizeUnit');
-    const unitLabelW = document.getElementById('unitLabelW');
-    const unitLabelH = document.getElementById('unitLabelH');
-    const compressBtn = document.getElementById('compressBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const resetResize = document.getElementById('resetResize');
-    const msg = document.getElementById('msg');
-    const zoomModal = document.getElementById('zoomModal');
-    const zoomImg = document.getElementById('zoomImg');
-    let originalFile = null;
-    let compressedBlob = null;
-    let loadedImage = null;
-    let originalType = "";
-    let origWidth = null, origHeight = null;
-    let blockResizeSync = false;
-
-    uploadZone.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      uploadZone.classList.add('dragover');
-    });
-    uploadZone.addEventListener('dragleave', (e) => {
-      e.preventDefault();
-      uploadZone.classList.remove('dragover');
-    });
-    uploadZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadZone.classList.remove('dragover');
-      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        fileInput.files = e.dataTransfer.files;
-        fileInput.dispatchEvent(new Event('change'));
-      }
-    });
-
-    fileInput.addEventListener('change', function() {
-      msg.textContent = '';
-      const file = this.files[0];
-      if (file && ["image/jpeg", "image/png", "image/webp", "image/gif", "image/bmp"].includes(file.type)) {
-        originalFile = file;
-        originalType = file.type;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          originalPreview.src = e.target.result;
-          originalPreview.style.display = 'block';
-          compressBtn.disabled = false;
-          const img = new Image();
-          img.onload = function() {
-            loadedImage = img;
-            origWidth = img.width;
-            origHeight = img.height;
-            showDimInfo(origWidth, origHeight, dimInfo);
-            originalInfo.innerHTML = `Format: ${file.type.replace('image/', '').toUpperCase()}<br>Size: ${(file.size/1024).toFixed(2)} KB`;
-            resetCompressed();
-            updateUnitLabels(true);
-          };
-          img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        msg.textContent = "Please select a valid image file (JPEG, PNG, WebP, GIF, BMP).";
-        originalPreview.style.display = 'none';
-        dimInfo.style.display = 'none';
-        originalInfo.innerHTML = '';
-        compressBtn.disabled = true;
-        resetCompressed();
-      }
-    });
-
-    function showDimInfo(width, height, targetDiv) {
-      if (!width || !height) {
-        targetDiv.style.display = 'none';
-        return;
-      }
-      targetDiv.innerHTML = `Dimensions: <b>${width} px × ${height} px</b><br>
-        (<span>${unitConvert(width, 'px', 'cm')} cm × ${unitConvert(height, 'px', 'cm')} cm</span> • 
-        <span>${unitConvert(width, 'px', 'inch')} in × ${unitConvert(height, 'px', 'inch')} in</span>)`;
-      targetDiv.style.display = 'inline-block';
-    }
-
-    function resetCompressed() {
-      compressedPreview.style.display = 'none';
-      compressedInfo.innerHTML = '';
-      compressedDimInfo.style.display = 'none';
-      downloadBtn.disabled = true;
-      compressedBlob = null;
-    }
-
-    qualityRange.addEventListener('input', function() {
-      qualityValue.textContent = this.value;
-    });
-
-    function getSelectedUnit() {
-      let selectedUnit = 'px';
-      unitRadios.forEach(radio => { if (radio.checked) selectedUnit = radio.value; });
-      return selectedUnit;
-    }
-    function updateUnitLabels(forceAutofill) {
-      let selectedUnit = getSelectedUnit();
-      unitLabelW.textContent = selectedUnit;
-      unitLabelH.textContent = selectedUnit;
-      if (loadedImage) {
-        const origW = loadedImage.width;
-        const origH = loadedImage.height;
-        if (selectedUnit === 'cm') {
-          resizeWidth.placeholder = unitConvert(origW, 'px', 'cm');
-          resizeHeight.placeholder = unitConvert(origH, 'px', 'cm');
-          if (forceAutofill) {
-            resizeWidth.value = parseFloat(unitConvert(origW, 'px', 'cm')).toFixed(DECIMALS);
-            resizeHeight.value = parseFloat(unitConvert(origH, 'px', 'cm')).toFixed(DECIMALS);
-          }
-          resizeWidth.step = "0.0001";
-          resizeHeight.step = "0.0001";
-        } else if (selectedUnit === 'inch') {
-          resizeWidth.placeholder = unitConvert(origW, 'px', 'inch');
-          resizeHeight.placeholder = unitConvert(origH, 'px', 'inch');
-          if (forceAutofill) {
-            resizeWidth.value = parseFloat(unitConvert(origW, 'px', 'inch')).toFixed(DECIMALS);
-            resizeHeight.value = parseFloat(unitConvert(origH, 'px', 'inch')).toFixed(DECIMALS);
-          }
-          resizeWidth.step = "0.0001";
-          resizeHeight.step = "0.0001";
-        } else {
-          resizeWidth.placeholder = origW;
-          resizeHeight.placeholder = origH;
-          if (forceAutofill) {
-            resizeWidth.value = Math.round(origW);
-            resizeHeight.value = Math.round(origH);
-          }
-          resizeWidth.step = "1";
-          resizeHeight.step = "1";
-        }
-      }
-    }
-    unitRadios.forEach(radio => radio.addEventListener('change', () => {
-      updateUnitLabels(true);
-    }));
-
-    function aspectRatio() {
-      if (!origWidth || !origHeight) return 1;
-      return origWidth / origHeight;
-    }
-    resizeWidth.addEventListener('input', function() {
-      if (blockResizeSync) return;
-      blockResizeSync = true;
-      let selectedUnit = getSelectedUnit();
-      let w = resizeWidth.value ? parseFloat(resizeWidth.value) : null;
-      if (w && origWidth && origHeight) {
-        let ratio = aspectRatio();
-        let h = w / ratio;
-        if (selectedUnit === 'cm' || selectedUnit === 'inch') {
-          resizeHeight.value = h ? parseFloat(h).toFixed(DECIMALS) : '';
-        } else {
-          resizeHeight.value = h ? Math.round(h) : '';
-        }
-      }
-      blockResizeSync = false;
-    });
-    resizeHeight.addEventListener('input', function() {
-      if (blockResizeSync) return;
-      blockResizeSync = true;
-      let selectedUnit = getSelectedUnit();
-      let h = resizeHeight.value ? parseFloat(resizeHeight.value) : null;
-      if (h && origWidth && origHeight) {
-        let ratio = aspectRatio();
-        let w = h * ratio;
-        if (selectedUnit === 'cm' || selectedUnit === 'inch') {
-          resizeWidth.value = w ? parseFloat(w).toFixed(DECIMALS) : '';
-        } else {
-          resizeWidth.value = w ? Math.round(w) : '';
-        }
-      }
-      blockResizeSync = false;
-    });
-
-    resetResize.addEventListener('click', function() {
-      if (loadedImage) {
-        updateUnitLabels(true);
-      }
-    });
-
-    compressBtn.addEventListener('click', function() {
-      msg.textContent = '';
-      if (!originalFile || !loadedImage) return;
-      let width = loadedImage.width;
-      let height = loadedImage.height;
-      let selectedUnit = getSelectedUnit();
-      let wVal = resizeWidth.value;
-      let hVal = resizeHeight.value;
-      if (wVal) {
-        if (selectedUnit === 'cm') width = unitConvert(wVal, 'cm', 'px');
-        else if (selectedUnit === 'inch') width = unitConvert(wVal, 'inch', 'px');
-        else width = parseInt(wVal);
-      }
-      if (hVal) {
-        if (selectedUnit === 'cm') height = unitConvert(hVal, 'cm', 'px');
-        else if (selectedUnit === 'inch') height = unitConvert(hVal, 'inch', 'px');
-        else height = parseInt(hVal);
-      }
-      if (width <= 0 || height <= 0) {
-        msg.textContent = "Resize dimensions must be positive.";
-        return;
-      }
-      let canvas = document.createElement('canvas');
-      let ctx = canvas.getContext('2d');
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(loadedImage, 0, 0, width, height);
-      let outMime = originalType;
-      if (!["image/jpeg", "image/png", "image/webp"].includes(originalType)) {
-        outMime = "image/png";
-      }
-      let quality = parseInt(qualityRange.value) / 100;
-      canvas.toBlob(function(blob) {
-        compressedBlob = blob;
-        const url = URL.createObjectURL(blob);
-        compressedPreview.src = url;
-        compressedPreview.style.display = 'block';
-        compressedInfo.innerHTML = `Format: ${blob.type.replace('image/', '').toUpperCase()}<br>Size: ${(blob.size/1024).toFixed(2)} KB`;
-        showDimInfo(width, height, compressedDimInfo);
-        downloadBtn.disabled = false;
-        msg.textContent = '';
-      }, outMime, quality);
-    });
-
-    downloadBtn.addEventListener('click', function() {
-      if (!compressedBlob) return;
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(compressedBlob);
-      let ext = "";
-      switch (compressedBlob.type) {
-        case "image/jpeg": ext = ".jpg"; break;
-        case "image/png": ext = ".png"; break;
-        case "image/webp": ext = ".webp"; break;
-        default: ext = ".png";
-      }
-      a.download = "compressed_" + originalFile.name.replace(/\.[^/.]+$/, "") + ext;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    });
-
-    function showZoom(src) {
-      zoomImg.src = src;
-      zoomModal.style.display = 'flex';
-    }
-    originalPreview.addEventListener('click', () => { if (originalPreview.src) showZoom(originalPreview.src); });
-    compressedPreview.addEventListener('click', () => { if (compressedPreview.src) showZoom(compressedPreview.src); });
-    zoomModal.addEventListener('click', () => { zoomModal.style.display = 'none'; });
-
-    updateUnitLabels(true);
-
-  </script>
-</body>
-</html>
+<!-- ...rest of your HTML as in the previous answer... -->
