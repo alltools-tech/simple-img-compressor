@@ -1,229 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7604876231244458"
-     crossorigin="anonymous"></script>
-  <!-- CropperJS CDN (for cropping functionality) -->
-  <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <meta charset="UTF-8">
   <title>Smart Image Compressor | JPEG, PNG, WebP, GIF, BMP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Compress JPEG, PNG, WebP, GIF, BMP images online free. Fast, secure & easy.">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <style>
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);
-      color: #222;
-    }
-    header {
-      background: #272a36;
-      color: #fff;
-      padding: 1.5em 0 1em;
-      text-align: center;
-      font-size: 2em;
-      font-weight: 700;
-      letter-spacing: .03em;
-      border-bottom: 2px solid #2196f3;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    }
-    main {
-      max-width: 980px;
-      margin: 2em auto;
-      background: #fff;
-      padding: 2em 2em 1em;
-      border-radius: 16px;
-      box-shadow: 0 4px 32px rgba(33,150,243,0.07);
-    }
-    .upload-zone {
-      border: 2px dashed #90caf9;
-      border-radius: 10px;
-      background: #e3f2fd;
-      padding: 2em 1em;
-      text-align: center;
-      color: #1976d2;
-      font-size: 1.15em;
-      margin-bottom: 1.5em;
-      cursor: pointer;
-      transition: background .13s;
-    }
-    .upload-zone.dragover {
-      background: #bbdefb;
-      border-color: #2196f3;
-      color: #0d47a1;
-    }
-    .upload-btn-group {
-      margin-top: 1em;
-      display: flex;
-      gap: 1em;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .upload-btn {
-      padding: .65em 1.4em;
-      background: linear-gradient(90deg, #2196f3 60%, #21cbf3);
-      color: #fff; border: none; border-radius: 6px;
-      font-weight: 700; font-size: 1em;
-      cursor: pointer; transition: background .13s;
-      box-shadow: 0 2px 8px rgba(33,150,243,0.09);
-      margin: 0 3px;
-    }
-    .supported-types {
-      color: #1565c0;
-      font-size: .98em;
-      margin-top: 10px;
-      background: #e8eaf6;
-      border-radius: 5px;
-      display: inline-block;
-      padding: 4px 14px;
-      font-weight: 500;
-    }
-    .preview-row {
-      display: flex;
-      gap: 2em;
-      align-items: flex-start;
-      margin-bottom: 1em;
-      justify-content: center;
-    }
-    @media(max-width:700px){
-      .preview-row { flex-direction: column; gap: 1em;}
-      main { padding: 1em;}
-      .upload-btn-group { flex-direction: column; gap: .7em;}
-    }
-    .card {
-      background: #f7fbff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(33,150,243,0.04);
-      padding: 1.3em 1em .7em 1em;
-      min-width: 250px;
-      text-align: center;
-      flex: 1;
-      position: relative;
-    }
-    .preview-img {
-      width: 100%; max-width: 300px; max-height: 200px;
-      border-radius: 8px;
-      margin-bottom: .4em;
-      cursor: pointer;
-      box-shadow: 0 2px 12px rgba(33,150,243,0.09);
-      background: repeating-linear-gradient(
-        135deg,
-        #e3f2fd 0px, #e3f2fd 20px,
-        #f8bbd0 20px, #f8bbd0 40px
-      );
-      outline: 2px solid #90caf9;
-      outline-offset: 2px;
-      transition: box-shadow .2s, outline-color .2s;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    /* --- (same styling as before; omitted for brevity) --- */
+    body {font-family: 'Inter', Arial, sans-serif;margin: 0; padding: 0;background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);color: #222;}
+    header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(0,0,0,0.07);}
+    main {max-width: 980px;margin: 2em auto;background: #fff;padding: 2em 2em 1em;border-radius: 16px;box-shadow: 0 4px 32px rgba(33,150,243,0.07);}
+    .upload-zone {border: 2px dashed #90caf9;border-radius: 10px;background: #e3f2fd;padding: 2em 1em;text-align: center;color: #1976d2;font-size: 1.15em;margin-bottom: 1.5em;cursor: pointer;transition: background .13s;}
+    .upload-zone.dragover {background: #bbdefb;border-color: #2196f3;color: #0d47a1;}
+    .upload-btn-group {margin-top: 1em;display: flex;gap: 1em;justify-content: center;flex-wrap: wrap;}
+    .upload-btn {padding: .65em 1.4em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .13s;box-shadow: 0 2px 8px rgba(33,150,243,0.09);margin: 0 3px;}
+    .supported-types {color: #1565c0;font-size: .98em;margin-top: 10px;background: #e8eaf6;border-radius: 5px;display: inline-block;padding: 4px 14px;font-weight: 500;}
+    .preview-row {display: flex;gap: 2em;align-items: flex-start;margin-bottom: 1em;justify-content: center;}
+    @media(max-width:700px){.preview-row { flex-direction: column; gap: 1em;}main { padding: 1em;}.upload-btn-group { flex-direction: column; gap: .7em;}}
+    .card {background: #f7fbff;border-radius: 10px;box-shadow: 0 2px 12px rgba(33,150,243,0.04);padding: 1.3em 1em .7em 1em;min-width: 250px;text-align: center;flex: 1;position: relative;}
+    .preview-img {width: 100%; max-width: 300px; max-height: 200px;border-radius: 8px;margin-bottom: .4em;cursor: pointer;box-shadow: 0 2px 12px rgba(33,150,243,0.09);background: repeating-linear-gradient(135deg,#e3f2fd 0px, #e3f2fd 20px,#f8bbd0 20px, #f8bbd0 40px);outline: 2px solid #90caf9;outline-offset: 2px;transition: box-shadow .2s, outline-color .2s;display: block;margin-left: auto;margin-right: auto;}
     .preview-img:hover { box-shadow: 0 8px 32px #42a5f5aa; outline-color: #1976d2;}
-    .zoom-modal {
-      display: none; position: fixed; z-index: 99;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(33,150,243,0.15);
-      align-items: center; justify-content: center;
-    }
-    .zoom-modal img {
-      max-width: 90vw; max-height: 90vh; border-radius: 12px;
-      box-shadow: 0 4px 40px #2196f3bb;
-      background: #fff;
-    }
-    .info-row {
-      font-size: 1em;
-      color: #2e7d32;
-      margin-bottom: .7em;
-      line-height: 1.4;
-    }
-    .dim-info-box {
-      margin: .4em 0 .9em 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-    .dim-info {
-      padding: 8px 18px;
-      background: linear-gradient(90deg,#e1bee7 0%,#bbdefb 100%);
-      color: #311b92;
-      font-size: 1.09em;
-      font-weight: 500;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px #bbdefb55;
-      letter-spacing: .02em;
-      border: 1px solid #90caf9;
-      display: inline-block;
-      min-width: 180px;
-      text-align: center;
-    }
+    .zoom-modal {display: none; position: fixed; z-index: 99;left: 0; top: 0; width: 100vw; height: 100vh;background: rgba(33,150,243,0.15);align-items: center; justify-content: center;}
+    .zoom-modal img {max-width: 90vw; max-height: 90vh; border-radius: 12px;box-shadow: 0 4px 40px #2196f3bb;background: #fff;}
+    .info-row {font-size: 1em;color: #2e7d32;margin-bottom: .7em;line-height: 1.4;}
+    .dim-info-box {margin: .4em 0 .9em 0;display: flex;justify-content: center;align-items: center;width: 100%;}
+    .dim-info {padding: 8px 18px;background: linear-gradient(90deg,#e1bee7 0%,#bbdefb 100%);color: #311b92;font-size: 1.09em;font-weight: 500;border-radius: 12px;box-shadow: 0 2px 8px #bbdefb55;letter-spacing: .02em;border: 1px solid #90caf9;display: inline-block;min-width: 180px;text-align: center;}
     label { display: block; margin:1em 0 .5em;}
     input[type="range"] { width: 100%; margin-bottom: .2em;}
     .range-row { display: flex; align-items: center; gap: 1em;}
-    .range-row span {
-      font-size: .97em;
-      font-weight: 500;
-      color: #1976d2;
-      background: #e3f2fd;
-      border-radius: 4px;
-      padding: 2px 8px;
-      margin-left: 7px;
-    }
-    .resize-unit-group {
-      display: flex;
-      gap: .8em;
-      margin-bottom: .7em;
-      align-items: center;
-      font-size: .99em;
-    }
-    .resize-unit-label {
-      color: #1976d2;
-      font-weight: 600;
-      margin-right: 8px;
-    }
+    .range-row span {font-size: .97em;font-weight: 500;color: #1976d2;background: #e3f2fd;border-radius: 4px;padding: 2px 8px;margin-left: 7px;}
+    .resize-unit-group {display: flex;gap: .8em;margin-bottom: .7em;align-items: center;font-size: .99em;}
+    .resize-unit-label {color: #1976d2;font-weight: 600;margin-right: 8px;}
     .error-msg { color: #cb2431; font-size: 1em; margin-top: .6em;}
     .success-msg { color: #388e3c; font-size: 1em; margin-top: .6em;}
-    .btn {
-      padding: .6em 1.5em;
-      background: linear-gradient(90deg, #2196f3 60%, #21cbf3);
-      color: #fff; border: none; border-radius: 6px;
-      font-weight: 700; font-size: 1em;
-      cursor: pointer; transition: background .13s;
-      box-shadow: 0 2px 8px rgba(33,150,243,0.09);
-      margin-top: 10px;
-    }
+    .btn {padding: .6em 1.5em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .13s;box-shadow: 0 2px 8px rgba(33,150,243,0.09);margin-top: 10px;}
     .btn:disabled { background: #aec4e6; cursor: not-allowed;}
-    .reset-btn {
-      padding: .4em 1.1em;
-      background: #bbb;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: .97em;
-      font-weight: 600;
-      margin-left: 16px;
-      cursor: pointer;
-      transition: background .13s;
-    }
+    .reset-btn {padding: .4em 1.1em;background: #bbb;color: #fff;border: none;border-radius: 4px;font-size: .97em;font-weight: 600;margin-left: 16px;cursor: pointer;transition: background .13s;}
     .reset-btn:hover { background: #757575;}
-    .footer {
-      text-align: center;
-      color: #999;
-      font-size: .98em;
-      margin: 2.5em 0 1em;
-      letter-spacing: .02em;
-    }
-    /* Crop Modal custom style */
-    #cropModal {
-      z-index: 101;
-      background: rgba(0,0,0,0.5);
-    }
-    #cropModal .btn, #cropModal .reset-btn {
-      margin-top: 0;
-      margin-left: 8px;
-    }
+    .footer {text-align: center;color: #999;font-size: .98em;margin: 2.5em 0 1em;letter-spacing: .02em;}
+    #cropModal {z-index: 101;background: rgba(0,0,0,0.5);}
+    #cropModal .btn, #cropModal .reset-btn {margin-top: 0;margin-left: 8px;}
   </style>
 </head>
 <body>
@@ -231,7 +50,6 @@
     Smart Image Compressor
   </header>
   <main>
-    <!-- Upload Zone -->
     <div class="upload-zone" id="uploadZone">
       <div><b>Drag &amp; Drop</b> or use <b>buttons below</b> to upload/capture image</div>
       <div class="supported-types">Supported: JPEG, PNG, WebP, GIF, BMP</div>
@@ -239,13 +57,10 @@
         <button class="upload-btn" id="galleryBtn" type="button">Upload from Gallery</button>
         <button class="upload-btn" id="cameraBtn" type="button">Capture from Camera</button>
       </div>
-      <!-- 2 hidden inputs for both modes -->
       <input type="file" id="galleryInput" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/*" style="display:none">
       <input type="file" id="cameraInput" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/*" capture="environment" style="display:none">
     </div>
-    <!-- Preview Row -->
     <div class="preview-row">
-      <!-- Original Image Card -->
       <div class="card" id="originalCard">
         <div style="font-weight:600; margin-bottom:5px;">Original</div>
         <img id="originalPreview" class="preview-img" src="" alt="" style="display:none;">
@@ -253,7 +68,6 @@
         <div class="dim-info-box"><div id="dimInfo" class="dim-info" style="display:none;"></div></div>
         <div class="info-row" id="originalInfo"></div>
       </div>
-      <!-- Compressed Image Card -->
       <div class="card" id="compressedCard">
         <div style="font-weight:600; margin-bottom:5px;">Compressed</div>
         <img id="compressedPreview" class="preview-img" src="" alt="" style="display:none;">
@@ -261,7 +75,6 @@
         <div class="info-row" id="compressedInfo"></div>
       </div>
     </div>
-    <!-- Controls -->
     <div style="margin:1.5em 0 1em 0;">
       <div class="range-row">
         <label for="qualityRange">Quality:</label>
@@ -283,15 +96,18 @@
         <input type="number" id="resizeHeight" min="0.0001" step="any" placeholder="Original height" style="width:90px;">
         <button id="resetResize" class="reset-btn" type="button" title="Reset to original">Reset</button>
       </div>
+      <!-- Only filename input (no folder) -->
+      <div style="margin:1em 0;">
+        <label for="saveFilename" style="margin-bottom:.3em;">Filename:</label>
+        <input type="text" id="saveFilename" style="width:160px;" placeholder="compressed_image">
+      </div>
       <button id="compressBtn" class="btn" disabled>Compress Image</button>
       <button id="downloadBtn" class="btn" disabled>Download Compressed</button>
       <span id="msg" class="error-msg"></span>
     </div>
-    <!-- Zoom Modal -->
     <div class="zoom-modal" id="zoomModal">
       <img id="zoomImg" src="" alt="Zoomed image">
     </div>
-    <!-- Crop Modal -->
     <div class="zoom-modal" id="cropModal">
       <div style="background:#fff; padding:18px 14px; border-radius:10px; max-width:99vw; max-height:96vh;">
         <img id="cropImg" src="" style="max-width:80vw; max-height:60vh;">
@@ -346,11 +162,12 @@
     const zoomModal = document.getElementById('zoomModal');
     const zoomImg = document.getElementById('zoomImg');
     const openCropBtn = document.getElementById('openCropBtn');
-    // CropperJS related
     const cropModal = document.getElementById('cropModal');
     const cropImg = document.getElementById('cropImg');
     const cropConfirmBtn = document.getElementById('cropConfirmBtn');
     const cropCancelBtn = document.getElementById('cropCancelBtn');
+    // Only filename input (no folder)
+    const saveFilename = document.getElementById('saveFilename');
     let cropper = null;
 
     let originalFile = null;
@@ -360,11 +177,9 @@
     let origWidth = null, origHeight = null;
     let blockResizeSync = false;
 
-    // Button triggers for inputs
     galleryBtn.onclick = () => galleryInput.click();
     cameraBtn.onclick = () => cameraInput.click();
 
-    // Drag & drop (will use gallery mode)
     uploadZone.addEventListener('dragover', (e) => {
       e.preventDefault();
       uploadZone.classList.add('dragover');
@@ -579,6 +394,7 @@
       }, outMime, quality);
     });
 
+    // Only filename input (no folder)
     downloadBtn.addEventListener('click', function() {
       if (!compressedBlob) return;
       const a = document.createElement('a');
@@ -590,7 +406,9 @@
         case "image/webp": ext = ".webp"; break;
         default: ext = ".png";
       }
-      a.download = "compressed_" + (originalFile ? originalFile.name.replace(/\.[^/.]+$/, "") : "image") + ext;
+      let baseName = saveFilename.value.trim() || (originalFile ? originalFile.name.replace(/\.[^/.]+$/, "") : "image");
+      let suggestedName = baseName + ext;
+      a.download = suggestedName;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -604,7 +422,6 @@
     compressedPreview.addEventListener('click', () => { if (compressedPreview.src) showZoom(compressedPreview.src); });
     zoomModal.addEventListener('click', () => { zoomModal.style.display = 'none'; });
 
-    // CROP BUTTON LOGIC
     openCropBtn.addEventListener('click', function() {
       if (!originalPreview.src) return;
       cropImg.src = originalPreview.src;
@@ -629,7 +446,6 @@
         if (!blob) return;
         const url = URL.createObjectURL(blob);
         originalPreview.src = url;
-        // For further processing (compression etc.)
         const img = new Image();
         img.onload = function() {
           loadedImage = img;
@@ -646,7 +462,6 @@
       }, originalType || "image/png");
     });
 
-    // Init
     updateUnitLabels(true);
 
   </script>
