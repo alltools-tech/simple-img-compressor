@@ -1,1 +1,1 @@
-Here you can compress and crop your  JPEG, PNG, WebP, GIF, BMP image easyly.
+Here you can compress and crop your  JPEG, PNG, WebP,  BMP and change file foramt JPEG, PNG, WebP,  BMP easyly.
