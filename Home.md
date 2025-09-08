@@ -1,6 +1,6 @@
 # Welcome to Simple Image Compressor
 
-Compress your images quickly and easily with our free online tool! Reduce file size without losing quality and make your images web-friendly in just a few clicks.
+Compress your images quickly and easily with our free online tool! Reduce file size without losing quality and and change file format. make your images web-friendly in just a few clicks.
 
 ## Why Use Simple Image Compressor?
 
