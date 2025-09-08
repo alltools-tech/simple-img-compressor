@@ -1,1 +1,1 @@
-here you can compress your jpeg, png files easyly
+Here you can compress and crop your  JPEG, PNG, WebP, GIF, BMP image easyly.
