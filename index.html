@@ -296,14 +296,16 @@
       }
     }
 
+    // ====== FIXED UNICODE CHARACTERS HERE ======
     function showDimInfo(width, height, targetDiv) {
       if (!width || !height) {
         targetDiv.style.display = 'none';
         return;
       }
-      targetDiv.innerHTML = `Dimensions: <b>${width} px Ã— ${height} px</b><br>
-        (<span>${unitConvert(width, 'px', 'cm')} cm Ã— ${unitConvert(height, 'px', 'cm')} cm</span> â€¢ 
-        <span>${unitConvert(width, 'px', 'inch')} in Ã— ${unitConvert(height, 'px', 'inch')} in</span>)`;
+      // FIX: replaced Ã— with × and â€¢ with •
+      targetDiv.innerHTML = `Dimensions: <b>${width} px × ${height} px</b><br>
+        (<span>${unitConvert(width, 'px', 'cm')} cm × ${unitConvert(height, 'px', 'cm')} cm</span> • 
+        <span>${unitConvert(width, 'px', 'inch')} in × ${unitConvert(height, 'px', 'inch')} in</span>)`;
       targetDiv.style.display = 'inline-block';
     }
 
