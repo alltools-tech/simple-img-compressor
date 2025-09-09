@@ -12,15 +12,15 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7604876231244458"
      crossorigin="anonymous"></script>
-
   <meta charset="UTF-8">
-  <title>Smart Image Compressor | JPEG, PNG, WebP, BMP</title>
+  <title>Smart Image Compressor | JPEG, PNG, WebP, GIF, BMP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Compress JPEG, PNG, WebP, GIF, BMP images online free. Fast, secure & easy.">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <style>
+    /* ... (same CSS as before, unchanged for brevity) ... */
     body {font-family: 'Inter', Arial, sans-serif;margin: 0; padding: 0;background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);color: #222;}
     header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(0,0,0,0.07);}
     main {max-width: 980px;margin: 2em auto;background: #fff;padding: 2em 2em 1em;border-radius: 16px;box-shadow: 0 4px 32px rgba(33,150,243,0.07);}
@@ -220,8 +220,15 @@
     let blockResizeSync = false;
     let lastOutMime = "";
 
-    galleryBtn.onclick = () => galleryInput.click();
-    cameraBtn.onclick = () => cameraInput.click();
+    // FIX: Ensure both buttons open their respective file inputs
+    galleryBtn.addEventListener('click', function() {
+      galleryInput.value = ""; // reset file input
+      galleryInput.click();
+    });
+    cameraBtn.addEventListener('click', function() {
+      cameraInput.value = ""; // reset file input
+      cameraInput.click();
+    });
 
     uploadZone.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -257,11 +264,9 @@
         } else {
           qualityRow.style.display = "";
         }
-        // Default unit "cm"
         document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
         updateUnitLabels(true);
 
-        // Set default format in dropdown
         if (file.type === "image/jpeg") {
           saveFormat.value = "image/jpeg";
         } else if (file.type === "image/png") {
@@ -307,9 +312,9 @@
         targetDiv.style.display = 'none';
         return;
       }
-      targetDiv.innerHTML = `Dimensions: <b>${width} px × ${height} px</b><br>
-        (<span>${unitConvert(width, 'px', 'cm')} cm × ${unitConvert(height, 'px', 'cm')} cm</span> • 
-        <span>${unitConvert(width, 'px', 'inch')} in × ${unitConvert(height, 'px', 'inch')} in</span>)`;
+      targetDiv.innerHTML = `Dimensions: <b>${width} px Ã— ${height} px</b><br>
+        (<span>${unitConvert(width, 'px', 'cm')} cm Ã— ${unitConvert(height, 'px', 'cm')} cm</span> â€¢ 
+        <span>${unitConvert(width, 'px', 'inch')} in Ã— ${unitConvert(height, 'px', 'inch')} in</span>)`;
       targetDiv.style.display = 'inline-block';
     }
 
@@ -442,14 +447,12 @@
       canvas.height = height;
       ctx.drawImage(loadedImage, 0, 0, width, height);
 
-      // Get output format from select box (or "auto")
       let outMime = originalType;
       let quality = parseInt(qualityRange.value) / 100;
 
       if (saveFormat.value !== "auto") {
         outMime = saveFormat.value;
       } else {
-        // PNG: always PNG, ignore quality
         if (originalType === "image/png") {
           outMime = "image/png";
           quality = undefined;
@@ -563,6 +566,15 @@
 
     document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
     updateUnitLabels(true);
+
+    // Show/hide quality slider based on saveFormat dropdown value (PNG par quality slider hide)
+    saveFormat.addEventListener("change", function() {
+      if (saveFormat.value === "image/png") {
+        qualityRow.style.display = "none";
+      } else {
+        qualityRow.style.display = "";
+      }
+    });
 
   </script>
 </body>
