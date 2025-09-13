@@ -9,7 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-R0K1T489JY');
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7604876231244458"
+<script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-7604876231244458"
      crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <title>Smart Image Compressor | JPEG, PNG, WebP</title>
@@ -19,7 +19,7 @@
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <style>
-    /* ... (same CSS as before, unchanged for brevity) ... */
+    /* unchanged CSS */
     body {font-family: 'Inter', Arial, sans-serif;margin: 0; padding: 0;background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);color: #222;}
     header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(0,0,0,0.07);}
     main {max-width: 980px;margin: 2em auto;background: #fff;padding: 2em 2em 1em;border-radius: 16px;box-shadow: 0 4px 32px rgba(33,150,243,0.07);}
@@ -57,8 +57,6 @@
     .zoom-modal {display: none; position: fixed; z-index: 99;left: 0; top: 0; width: 100vw; height: 100vh;background: rgba(33,150,243,0.15);align-items: center; justify-content: center;}
     .zoom-modal img {max-width: 90vw; max-height: 90vh; border-radius: 12px;box-shadow: 0 4px 40px #2196f3bb;background: #fff;}
     .info-row {font-size: 1em;color: #2e7d32;margin-bottom: .7em;line-height: 1.4;}
-    .dim-info-box {margin: .4em 0 .9em 0;display: flex;justify-content: center;align-items: center;width: 100%;}
-    .dim-info {padding: 8px 18px;background: linear-gradient(90deg,#e1bee7 0%,#bbdefb 100%);color: #311b92;font-size: 1.09em;font-weight: 500;border-radius: 12px;box-shadow: 0 2px 8px #bbdefb55;letter-spacing: .02em;border: 1px solid #90caf9;display: inline-block;min-width: 180px;text-align: center;}
     label { display: block; margin:1em 0 .5em;}
     input[type="range"] { width: 100%; margin-bottom: .2em;}
     .range-row { display: flex; align-items: center; gap: 1em;}
@@ -96,14 +94,15 @@
       <div class="card" id="originalCard">
         <div style="font-weight:600; margin-bottom:5px;">Original</div>
         <img id="originalPreview" class="preview-img" src="" alt="" style="display:none;">
-        <button id="openCropBtn" class="btn" style="margin-top:10px; display:none;">Crop Image</button>
-        <div class="dim-info-box"><div id="dimInfo" class="dim-info" style="display:none;"></div></div>
+        <div style="margin-top:10px;">
+          <button id="openCropBtn" class="btn" style="display:none;">Crop Image</button>
+          <button id="rotateBtn" class="btn" style="display:none;">Rotate 90Â°</button>
+        </div>
         <div class="info-row" id="originalInfo"></div>
       </div>
       <div class="card" id="compressedCard">
         <div style="font-weight:600; margin-bottom:5px;">Compressed</div>
         <img id="compressedPreview" class="preview-img" src="" alt="" style="display:none;">
-        <div class="dim-info-box"><div id="compressedDimInfo" class="dim-info" style="display:none;"></div></div>
         <div class="info-row" id="compressedInfo"></div>
       </div>
     </div>
@@ -183,8 +182,6 @@
     const uploadZone = document.getElementById('uploadZone');
     const originalPreview = document.getElementById('originalPreview');
     const compressedPreview = document.getElementById('compressedPreview');
-    const dimInfo = document.getElementById('dimInfo');
-    const compressedDimInfo = document.getElementById('compressedDimInfo');
     const originalInfo = document.getElementById('originalInfo');
     const compressedInfo = document.getElementById('compressedInfo');
     const qualityRange = document.getElementById('qualityRange');
@@ -209,6 +206,7 @@
     const enableSaveAs = document.getElementById('enableSaveAs');
     const saveFormat = document.getElementById('saveFormat');
     const qualityRow = document.getElementById('qualityRow');
+    const rotateBtn = document.getElementById('rotateBtn');
     let cropper = null;
 
     let originalFile = null;
@@ -218,8 +216,9 @@
     let origWidth = null, origHeight = null;
     let blockResizeSync = false;
     let lastOutMime = "";
+    let rotation = 0;
 
-    // FIX: Ensure both buttons open their respective file inputs
+    // Ensure both buttons open their respective file inputs
     galleryBtn.addEventListener('click', function() {
       galleryInput.value = ""; // reset file input
       galleryInput.click();
@@ -254,6 +253,7 @@
 
     function handleFile(file) {
       msg.textContent = '';
+      rotation = 0;
       if (file && ["image/jpeg", "image/png", "image/webp", "image/gif", "image/bmp"].includes(file.type)) {
         originalFile = file;
         originalType = file.type;
@@ -282,12 +282,12 @@
           originalPreview.style.display = 'block';
           compressBtn.disabled = false;
           openCropBtn.style.display = 'inline-block';
+          rotateBtn.style.display = 'inline-block';
           const img = new Image();
           img.onload = function() {
             loadedImage = img;
             origWidth = img.width;
             origHeight = img.height;
-            showDimInfo(origWidth, origHeight, dimInfo);
             originalInfo.innerHTML = `Format: ${file.type.replace('image/', '').toUpperCase()}<br>Size: ${(file.size/1024).toFixed(2)} KB`;
             resetCompressed();
             updateUnitLabels(true);
@@ -299,30 +299,16 @@
         msg.textContent = "Please select a valid image file (JPEG, PNG, WebP, GIF, BMP).";
         originalPreview.style.display = 'none';
         openCropBtn.style.display = 'none';
-        dimInfo.style.display = 'none';
+        rotateBtn.style.display = 'none';
         originalInfo.innerHTML = '';
         compressBtn.disabled = true;
         resetCompressed();
       }
     }
 
-    // ====== FIXED UNICODE CHARACTERS HERE ======
-    function showDimInfo(width, height, targetDiv) {
-      if (!width || !height) {
-        targetDiv.style.display = 'none';
-        return;
-      }
-      // FIX: replaced Ã— with × and â€¢ with •
-      targetDiv.innerHTML = `Dimensions: <b>${width} px × ${height} px</b><br>
-        (<span>${unitConvert(width, 'px', 'cm')} cm × ${unitConvert(height, 'px', 'cm')} cm</span> • 
-        <span>${unitConvert(width, 'px', 'inch')} in × ${unitConvert(height, 'px', 'inch')} in</span>)`;
-      targetDiv.style.display = 'inline-block';
-    }
-
     function resetCompressed() {
       compressedPreview.style.display = 'none';
       compressedInfo.innerHTML = '';
-      compressedDimInfo.style.display = 'none';
       downloadBtn.disabled = true;
       compressedBlob = null;
     }
@@ -477,7 +463,6 @@
         compressedPreview.src = url;
         compressedPreview.style.display = 'block';
         compressedInfo.innerHTML = `Format: ${blob.type.replace('image/', '').toUpperCase()}<br>Size: ${(blob.size/1024).toFixed(2)} KB`;
-        showDimInfo(width, height, compressedDimInfo);
         downloadBtn.disabled = false;
         msg.textContent = '';
       }, outMime, quality);
@@ -549,12 +534,12 @@
         if (!blob) return;
         const url = URL.createObjectURL(blob);
         originalPreview.src = url;
+        rotation = 0; // Reset rotation after crop
         const img = new Image();
         img.onload = function() {
           loadedImage = img;
           origWidth = img.width;
           origHeight = img.height;
-          showDimInfo(origWidth, origHeight, dimInfo);
           originalInfo.innerHTML = `Format: ${blob.type.replace('image/', '').toUpperCase()}<br>Size: ${(blob.size/1024).toFixed(2)} KB`;
           resetCompressed();
           updateUnitLabels(true);
@@ -564,6 +549,43 @@
         if (cropper) cropper.destroy();
       }, originalType || "image/png");
     });
+
+    rotateBtn.addEventListener('click', function() {
+      if (!loadedImage) return;
+      rotation = (rotation + 90) % 360;
+      drawRotatedImage(loadedImage, rotation, function(dataUrl, w, h) {
+        originalPreview.src = dataUrl;
+        const img = new Image();
+        img.onload = function() {
+          loadedImage = img;
+          origWidth = img.width;
+          origHeight = img.height;
+          originalInfo.innerHTML = `Format: ${originalType.replace('image/', '').toUpperCase()}<br>Size: ${(originalFile.size/1024).toFixed(2)} KB`;
+          resetCompressed();
+          updateUnitLabels(true);
+        };
+        img.src = dataUrl;
+      });
+    });
+
+    function drawRotatedImage(img, angle, cb) {
+      let canvas = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
+      let w = img.width, h = img.height;
+      if (angle % 180 !== 0) {
+        canvas.width = h;
+        canvas.height = w;
+      } else {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(angle * Math.PI / 180);
+      ctx.drawImage(img, -w / 2, -h / 2);
+      ctx.restore();
+      cb(canvas.toDataURL(), canvas.width, canvas.height);
+    }
 
     document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
     updateUnitLabels(true);
