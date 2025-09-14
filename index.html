@@ -1,65 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta name="google-site-verification" content="xjdbmJXre2BsleCXBfAaHniqJeBFwOqnK1iVKz3tg1c" />
-
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Primary Meta Tags -->
-  <title>Free Image Compressor & Converter Online | Smart Image Compressor</title>
-  <meta name="description" content="Compress and convert images (JPEG, PNG, WebP) online for free. 100% secure — works in browser, no upload needed. Fast & privacy-friendly.">
-  <meta name="keywords" content="free image compressor, online image converter, compress JPEG, compress PNG, WebP compressor, image resize tool">
-  <meta name="author" content="Smart Image Compressor">
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://simple-img-compressor.vercel.app/">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://simple-img-compressor.vercel.app/">
-  <meta property="og:title" content="Free Image Compressor & Converter Online">
-  <meta property="og:description" content="Compress and convert JPEG, PNG, WebP images online for free. No uploads. Fast & secure.">
-  <meta property="og:image" content="https://simple-img-compressor.vercel.app/og-image.jpg">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://simple-img-compressor.vercel.app/">
-  <meta name="twitter:title" content="Free Image Compressor & Converter Online">
-  <meta name="twitter:description" content="Compress and convert JPEG, PNG, WebP images online for free. No uploads. Fast & secure.">
-  <meta name="twitter:image" content="https://simple-img-compressor.vercel.app/og-image.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://simple-img-compressor.vercel.app/favicon.ico" type="image/x-icon">
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Smart Image Compressor",
-    "url": "https://simple-img-compressor.vercel.app/",
-    "description": "Free, fast and secure online tool to compress and convert JPEG, PNG, WebP images.",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
-  </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R0K1T489JY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-R0K1T489JY');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-7604876231244458"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <title>Smart Image Compressor | JPEG, PNG, WebP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +9,7 @@
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <style>
-    /* unchanged CSS - NO DESIGN CHANGES */
+    /* NO DESIGN CHANGE: same as original */
     body {font-family: 'Inter', Arial, sans-serif;margin: 0; padding: 0;background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);color: #222;}
     header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(0,0,0,0.07);}
     main {max-width: 980px;margin: 2em auto;background: #fff;padding: 2em 2em 1em;border-radius: 16px;box-shadow: 0 4px 32px rgba(33,150,243,0.07);}
@@ -118,13 +59,16 @@
     .btn:disabled { background: #aec4e6; cursor: not-allowed;}
     .reset-btn {padding: .4em 1.1em;background: #bbb;color: #fff;border: none;border-radius: 4px;font-size: .97em;font-weight: 600;margin-left: 16px;cursor: pointer;transition: background .13s;}
     .reset-btn:hover { background: #757575;}
-    .footer {text-align: center;color: #999;font-size: .98em;margin: 2.5em 0 0.3em;letter-spacing: .02em;}
+    .footer {text-align: center;color: #999;font-size: .98em;margin: 2.5em 0 1em;letter-spacing: .02em;}
     #about-link {display:inline-block; color:#2196f3;font-weight:500; text-decoration:none; margin-left:15px;}
     #about-popup {display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(33,150,243,.11); z-index:999; align-items:center; justify-content:center;}
     #about-popup-content {background:#fff;padding:2em 1.5em;max-width:500px;border-radius:16px;box-shadow:0 4px 32px rgba(33,150,243,0.10);}
     #about-popup h2 {color:#1976d2;margin-top:0;}
     #about-popup ul {margin-left:1.2em;}
     #about-close {background:#2196f3;color:#fff;border:none;border-radius:6px;padding:.5em 1em;font-size:1em;font-weight:600;margin-top:1em;cursor:pointer;}
+    /* Webcam Modal Desktop Only */
+    #webcamModal {display:none; position:fixed; z-index:100; left:0; top:0; width:100vw; height:100vh; background:rgba(33,150,243,0.13); align-items:center; justify-content:center;}
+    #webcamModal video {max-width:80vw; max-height:60vh; border-radius:10px; background:#222;}
   </style>
 </head>
 <body>
@@ -208,6 +152,14 @@
         </div>
       </div>
     </div>
+    <!-- Webcam Modal for Desktop/laptop camera capture -->
+    <div class="zoom-modal" id="webcamModal">
+      <div style="background:#fff; padding:20px 16px; border-radius:12px; max-width:99vw; max-height:96vh; text-align:center;">
+        <video id="webcamVideo" autoplay playsinline></video>
+        <br><button id="webcamCaptureBtn" class="btn" style="margin-top:12px;">Capture</button>
+        <button id="webcamCloseBtn" class="reset-btn" style="margin-left:12px;">Close</button>
+      </div>
+    </div>
   </main>
   <div class="footer">
     &copy; 2025 Smart Image Compressor | Fast, Free & Secure
@@ -252,15 +204,14 @@
       </ul>
       <h3>Contact & Feedback</h3>
       <p>
-  If you have suggestions or found a bug, please reach out at 
-  <a href="mailto:skycommunics@gmail.com">skycommunics@gmail.com</a>.
+        If you have suggestions or found a bug, please reach out at <a href="mailto:skycommunics@gmail.com">skycommunics@gmail.com</a>.
       </p>
       <button id="about-close">Close</button>
     </div>
   </div>
   <script>
-    // About popup logic
     document.addEventListener('DOMContentLoaded', function(){
+      // About popup logic
       var aboutLink = document.getElementById('about-link');
       var aboutPopup = document.getElementById('about-popup');
       var aboutClose = document.getElementById('about-close');
@@ -271,12 +222,21 @@
       aboutClose.addEventListener('click', function(){
         aboutPopup.style.display = 'none';
       });
-      // Optional: close on outside click
       aboutPopup.addEventListener('click', function(e){
         if(e.target === aboutPopup) aboutPopup.style.display = 'none';
       });
 
-      // Compressor JS code (unchanged, paste your previous code here below)
+      // Webcam Desktop Capture JS
+      const webcamModal = document.getElementById('webcamModal');
+      const webcamVideo = document.getElementById('webcamVideo');
+      const webcamCaptureBtn = document.getElementById('webcamCaptureBtn');
+      const webcamCloseBtn = document.getElementById('webcamCloseBtn');
+      let webcamStream = null;
+      function isMobile() {
+        return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop|Mobile|BlackBerry/i.test(navigator.userAgent);
+      }
+
+      // Compressor logic
       const DECIMALS = 4;
       function getDPI() { return 96; }
       function unitConvert(val, from, to) {
@@ -323,7 +283,6 @@
       const qualityRow = document.getElementById('qualityRow');
       const rotateBtn = document.getElementById('rotateBtn');
       let cropper = null;
-
       let originalFile = null;
       let compressedBlob = null;
       let loadedImage = null;
@@ -334,28 +293,66 @@
       let rotation = 0;
 
       galleryBtn.addEventListener('click', function() {
-        galleryInput.value = ""; // reset file input
-        galleryInput.click();
+        galleryInput.value = ""; galleryInput.click();
       });
       cameraBtn.addEventListener('click', function() {
-        cameraInput.value = ""; // reset file input
-        cameraInput.click();
+        if (isMobile()) {
+          cameraInput.value = ""; cameraInput.click();
+        } else {
+          webcamModal.style.display = 'flex';
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+              .then(function(stream) {
+                webcamStream = stream;
+                webcamVideo.srcObject = stream;
+              })
+              .catch(function(err) {
+                msg.textContent = "Unable to access webcam: " + err;
+              });
+          } else {
+            msg.textContent = "Webcam not supported in this browser.";
+          }
+        }
+      });
+
+      webcamCloseBtn.addEventListener('click', function() {
+        webcamModal.style.display = 'none';
+        if (webcamStream) {
+          webcamStream.getTracks().forEach(track => track.stop());
+          webcamVideo.srcObject = null;
+        }
+      });
+      webcamCaptureBtn.addEventListener('click', function() {
+        try {
+          let video = webcamVideo;
+          let canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          let ctx = canvas.getContext('2d');
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob(function(blob) {
+            let file = new File([blob], "webcam.jpg", { type: "image/jpeg" });
+            handleFile(file);
+            webcamModal.style.display = 'none';
+            if (webcamStream) {
+              webcamStream.getTracks().forEach(track => track.stop());
+              webcamVideo.srcObject = null;
+            }
+          }, "image/jpeg", 0.92);
+        } catch(err) {
+          msg.textContent = "Unable to capture webcam image.";
+        }
       });
 
       uploadZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadZone.classList.add('dragover');
+        e.preventDefault(); uploadZone.classList.add('dragover');
       });
       uploadZone.addEventListener('dragleave', (e) => {
-        e.preventDefault();
-        uploadZone.classList.remove('dragover');
+        e.preventDefault(); uploadZone.classList.remove('dragover');
       });
       uploadZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadZone.classList.remove('dragover');
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-          handleFile(e.dataTransfer.files[0]);
-        }
+        e.preventDefault(); uploadZone.classList.remove('dragover');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
       });
 
       galleryInput.addEventListener('change', function() {
@@ -369,26 +366,19 @@
         msg.textContent = '';
         rotation = 0;
         if (file && ["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-          originalFile = file;
-          originalType = file.type;
+          originalFile = file; originalType = file.type;
           if (file.type === "image/png") {
             qualityRow.style.display = "none";
-          } else {
-            qualityRow.style.display = "";
-          }
+          } else { qualityRow.style.display = ""; }
           document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
           updateUnitLabels(true);
-
           if (file.type === "image/jpeg") {
             saveFormat.value = "image/jpeg";
           } else if (file.type === "image/png") {
             saveFormat.value = "image/png";
           } else if (file.type === "image/webp") {
             saveFormat.value = "image/webp";
-          } else {
-            saveFormat.value = "auto";
-          }
-
+          } else { saveFormat.value = "auto"; }
           try {
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -531,9 +521,7 @@
       });
 
       resetResize.addEventListener('click', function() {
-        if (loadedImage) {
-          updateUnitLabels(true);
-        }
+        if (loadedImage) { updateUnitLabels(true); }
       });
 
       compressBtn.addEventListener('click', function() {
@@ -668,7 +656,7 @@
           if (!blob) return;
           const url = URL.createObjectURL(blob);
           originalPreview.src = url;
-          rotation = 0; // Reset rotation after crop
+          rotation = 0;
           const img = new Image();
           img.crossOrigin = "anonymous";
           img.onload = function() {
@@ -702,7 +690,7 @@
             originalInfo.innerHTML = `Format: ${originalType.replace('image/', '').toUpperCase()}<br>Size: ${(originalFile.size/1024).toFixed(2)} KB`;
             resetCompressed();
             updateUnitLabels(true);
-            msg.textContent = ""; // clear
+            msg.textContent = "";
           };
           img.onerror = function() {
             msg.textContent = "Rotation failed.";
@@ -717,11 +705,9 @@
           let ctx = canvas.getContext('2d');
           let w = img.width, h = img.height;
           if (angle % 180 !== 0) {
-            canvas.width = h;
-            canvas.height = w;
+            canvas.width = h; canvas.height = w;
           } else {
-            canvas.width = w;
-            canvas.height = h;
+            canvas.width = w; canvas.height = h;
           }
           ctx.save();
           ctx.translate(canvas.width / 2, canvas.height / 2);
