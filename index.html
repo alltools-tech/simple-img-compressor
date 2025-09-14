@@ -106,6 +106,9 @@
     .range-row span {font-size: .97em;font-weight: 500;color: #1976d2;background: #e3f2fd;border-radius: 4px;padding: 2px 8px;margin-left: 7px;}
     .resize-unit-group {display: flex;gap: .8em;margin-bottom: .7em;align-items: center;font-size: .99em;}
     .resize-unit-label {color: #1976d2;font-weight: 600;margin-right: 8px;}
+    .aspect-lock-row { display: flex; align-items: center; gap: 0.8em; margin-bottom: 0.5em; font-size: .99em;}
+    .aspect-lock-label { color: #1976d2; font-weight: 600; }
+    .aspect-lock-checkbox { width: 1.15em; height: 1.15em; }
     .error-msg { color: #cb2431; font-size: 1em; margin-top: .6em;}
     .success-msg { color: #388e3c; font-size: 1em; margin-top: .6em;}
     .btn {padding: .6em 1.5em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .18s;}
@@ -163,6 +166,13 @@
         <label><input type="radio" name="resizeUnit" value="cm" checked> cm</label>
         <label><input type="radio" name="resizeUnit" value="inch"> inch</label>
         <label><input type="radio" name="resizeUnit" value="px"> px</label>
+      </div>
+      <!-- Aspect Lock Option -->
+      <div class="aspect-lock-row">
+        <label class="aspect-lock-label">
+          <input type="checkbox" id="aspectLock" class="aspect-lock-checkbox" checked>
+          Lock Aspect Ratio
+        </label>
       </div>
       <div class="range-row">
         <label for="resizeWidth">Width (<span id="unitLabelW">cm</span>):</label>
@@ -253,7 +263,6 @@
     </div>
   </div>
   <script>
-    // About popup logic and main JS code (unchanged)
     document.addEventListener('DOMContentLoaded', function(){
       var aboutLink = document.getElementById('about-link');
       var aboutPopup = document.getElementById('about-popup');
@@ -269,7 +278,7 @@
         if(e.target === aboutPopup) aboutPopup.style.display = 'none';
       });
 
-      // Compressor JS code (unchanged)
+      // Compressor JS code
       const DECIMALS = 4;
       function getDPI() { return 96; }
       function unitConvert(val, from, to) {
@@ -315,6 +324,7 @@
       const saveFormat = document.getElementById('saveFormat');
       const qualityRow = document.getElementById('qualityRow');
       const rotateBtn = document.getElementById('rotateBtn');
+      const aspectLock = document.getElementById('aspectLock');
       let cropper = null;
 
       let originalFile = null;
@@ -325,6 +335,7 @@
       let blockResizeSync = false;
       let lastOutMime = "";
       let rotation = 0;
+      let isAspectLocked = aspectLock ? aspectLock.checked : true;
 
       galleryBtn.addEventListener('click', function() {
         galleryInput.value = ""; // reset file input
@@ -358,9 +369,15 @@
         if (this.files && this.files[0]) handleFile(this.files[0]);
       });
 
+      aspectLock.addEventListener('change', () => {
+        isAspectLocked = aspectLock.checked;
+      });
+
       function handleFile(file) {
         msg.textContent = '';
         rotation = 0;
+        aspectLock.checked = true;
+        isAspectLocked = true;
         if (file && ["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
           originalFile = file;
           originalType = file.type;
@@ -490,12 +507,14 @@
         if (!origWidth || !origHeight) return 1;
         return origWidth / origHeight;
       }
+
+      // Modified: Only sync the other field if aspect lock is enabled
       resizeWidth.addEventListener('input', function() {
         if (blockResizeSync) return;
         blockResizeSync = true;
         let selectedUnit = getSelectedUnit();
         let w = resizeWidth.value ? parseFloat(resizeWidth.value) : null;
-        if (w && origWidth && origHeight) {
+        if (isAspectLocked && w && origWidth && origHeight) {
           let ratio = aspectRatio();
           let h = w / ratio;
           if (selectedUnit === 'cm' || selectedUnit === 'inch') {
@@ -511,7 +530,7 @@
         blockResizeSync = true;
         let selectedUnit = getSelectedUnit();
         let h = resizeHeight.value ? parseFloat(resizeHeight.value) : null;
-        if (h && origWidth && origHeight) {
+        if (isAspectLocked && h && origWidth && origHeight) {
           let ratio = aspectRatio();
           let w = h * ratio;
           if (selectedUnit === 'cm' || selectedUnit === 'inch') {
@@ -538,13 +557,13 @@
         let wVal = resizeWidth.value;
         let hVal = resizeHeight.value;
         if (wVal) {
-          if (selectedUnit === 'cm') width = unitConvert(wVal, 'cm', 'px');
-          else if (selectedUnit === 'inch') width = unitConvert(wVal, 'inch', 'px');
+          if (selectedUnit === "cm") width = unitConvert(wVal, "cm", "px");
+          else if (selectedUnit === "inch") width = unitConvert(wVal, "inch", "px");
           else width = parseInt(wVal);
         }
         if (hVal) {
-          if (selectedUnit === 'cm') height = unitConvert(hVal, 'cm', 'px');
-          else if (selectedUnit === 'inch') height = unitConvert(hVal, 'inch', 'px');
+          if (selectedUnit === "cm") height = unitConvert(hVal, "cm", "px");
+          else if (selectedUnit === "inch") height = unitConvert(hVal, "inch", "px");
           else height = parseInt(hVal);
         }
         if (width <= 0 || height <= 0) {
