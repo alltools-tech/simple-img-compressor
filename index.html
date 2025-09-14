@@ -69,10 +69,13 @@
     .btn:disabled { background: #aec4e6; cursor: not-allowed;}
     .reset-btn {padding: .4em 1.1em;background: #bbb;color: #fff;border: none;border-radius: 4px;font-size: .97em;font-weight: 600;margin-left: 16px;cursor: pointer;transition: background .13s;}
     .reset-btn:hover { background: #757575;}
-    .footer {text-align: center;color: #999;font-size: .98em;margin: 2.5em 0 1em;letter-spacing: .02em;}
-    #cropModal {z-index: 101;background: rgba(0,0,0,0.5);}
-    #cropModal .btn, #cropModal .reset-btn {margin-top: 0;margin-left: 8px;}
-    .select-format {margin-left: 10px; font-size: 1em; padding: 4px 12px; border-radius: 5px; border: 1px solid #2196f3;}
+    .footer {text-align: center;color: #999;font-size: .98em;margin: 2.5em 0 0.3em;letter-spacing: .02em;}
+    #about-link {display:inline-block; color:#2196f3;font-weight:500; text-decoration:none; margin-left:15px;}
+    #about-popup {display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(33,150,243,.11); z-index:999; align-items:center; justify-content:center;}
+    #about-popup-content {background:#fff;padding:2em 1.5em;max-width:500px;border-radius:16px;box-shadow:0 4px 32px rgba(33,150,243,0.10);}
+    #about-popup h2 {color:#1976d2;margin-top:0;}
+    #about-popup ul {margin-left:1.2em;}
+    #about-close {background:#2196f3;color:#fff;border:none;border-radius:6px;padding:.5em 1em;font-size:1em;font-weight:600;margin-top:1em;cursor:pointer;}
   </style>
 </head>
 <body>
@@ -159,10 +162,71 @@
   </main>
   <div class="footer">
     &copy; 2025 Smart Image Compressor | Fast, Free & Secure
+    <a id="about-link" href="#">About</a>
+  </div>
+  <!-- About Popup -->
+  <div id="about-popup">
+    <div id="about-popup-content">
+      <h2>About Smart Image Compressor</h2>
+      <p>
+        <strong>Smart Image Compressor</strong> is a free, fast, and secure online tool for compressing and resizing images. It supports JPEG, PNG, and WebP formats. The app is designed for simplicity—no sign-up or installation required.
+      </p>
+      <h3>Features</h3>
+      <ul>
+        <li>Supports JPEG, PNG, and WebP images</li>
+        <li>Compress images with adjustable quality</li>
+        <li>Resize by pixels, centimeters, or inches</li>
+        <li>Crop and rotate images before compression</li>
+        <li>Preview original and compressed images side-by-side</li>
+        <li>Download compressed images with custom filenames</li>
+        <li>Works entirely in your browser—no image is uploaded to a server</li>
+      </ul>
+      <h3>Privacy & Security</h3>
+      <ul>
+        <li>Your images never leave your device</li>
+        <li>Compression is handled locally in your browser using HTML5 Canvas</li>
+        <li>No images are stored, shared, or sent over the internet</li>
+      </ul>
+      <h3>Technology Used</h3>
+      <ul>
+        <li>HTML5, CSS3, and JavaScript</li>
+        <li>Canvas API for image processing</li>
+        <li><a href="https://fengyuanchen.github.io/cropperjs/" target="_blank">CropperJS</a> for cropping functionality</li>
+        <li>Responsive design for mobile and desktop</li>
+      </ul>
+      <h3>How to Use?</h3>
+      <ul>
+        <li>Upload or capture an image from your device</li>
+        <li>Adjust quality, resize, crop, or rotate as needed</li>
+        <li>Click 'Compress Image' and preview the result</li>
+        <li>Download the compressed image for use anywhere</li>
+      </ul>
+      <h3>Contact & Feedback</h3>
+      <p>
+        If you have suggestions or found a bug, please reach out at <a href="mailto:support@smartimagecompressor.com">support@smartimagecompressor.com</a>.
+      </p>
+      <button id="about-close">Close</button>
+    </div>
   </div>
   <script>
-    // All code runs after DOM loaded!
-    document.addEventListener('DOMContentLoaded', function() {
+    // About popup logic
+    document.addEventListener('DOMContentLoaded', function(){
+      var aboutLink = document.getElementById('about-link');
+      var aboutPopup = document.getElementById('about-popup');
+      var aboutClose = document.getElementById('about-close');
+      aboutLink.addEventListener('click', function(e){
+        e.preventDefault();
+        aboutPopup.style.display = 'flex';
+      });
+      aboutClose.addEventListener('click', function(){
+        aboutPopup.style.display = 'none';
+      });
+      // Optional: close on outside click
+      aboutPopup.addEventListener('click', function(e){
+        if(e.target === aboutPopup) aboutPopup.style.display = 'none';
+      });
+
+      // Compressor JS code (unchanged, paste your previous code here below)
       const DECIMALS = 4;
       function getDPI() { return 96; }
       function unitConvert(val, from, to) {
@@ -176,7 +240,6 @@
           default: return val;
         }
       }
-      // DOM elements
       const galleryBtn = document.getElementById('galleryBtn');
       const cameraBtn = document.getElementById('cameraBtn');
       const galleryInput = document.getElementById('galleryInput');
@@ -220,7 +283,6 @@
       let lastOutMime = "";
       let rotation = 0;
 
-      // Ensure both buttons open their respective file inputs
       galleryBtn.addEventListener('click', function() {
         galleryInput.value = ""; // reset file input
         galleryInput.click();
@@ -256,11 +318,9 @@
       function handleFile(file) {
         msg.textContent = '';
         rotation = 0;
-        // Only JPEG, PNG, WebP allowed
         if (file && ["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
           originalFile = file;
           originalType = file.type;
-          // PNG par slider hatao, baaki format par dikhao
           if (file.type === "image/png") {
             qualityRow.style.display = "none";
           } else {
@@ -426,7 +486,6 @@
         }
       });
 
-      // Fastest possible compression: direct toBlob, no setTimeout, no loader
       compressBtn.addEventListener('click', function() {
         msg.textContent = '';
         if (!originalFile || !loadedImage) return;
@@ -576,10 +635,8 @@
         }, originalType || "image/png");
       });
 
-      // Rotate big image async, show processing message, warn if too large
       rotateBtn.addEventListener('click', function() {
         if (!loadedImage) return;
-        // If big image, warn and limit
         if (loadedImage.width > 3000 || loadedImage.height > 3000) {
           msg.textContent = "Warning: Large image, rotation may take time!";
         }
@@ -630,7 +687,6 @@
       document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
       updateUnitLabels(true);
 
-      // Show/hide quality slider based on saveFormat dropdown value (PNG par quality slider hide)
       saveFormat.addEventListener("change", function() {
         if (saveFormat.value === "image/png") {
           qualityRow.style.display = "none";
