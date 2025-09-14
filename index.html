@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta name="google-site-verification" content="xjdbmJXre2BsleCXBfAaHniqJeBFwOqnK1iVKz3tg1c" />
-
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary Meta Tags -->
@@ -50,32 +47,29 @@
     }
   }
   </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R0K1T489JY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-R0K1T489JY');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-7604876231244458"
-     crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
-  <title>Smart Image Compressor | JPEG, PNG, WebP</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Compress JPEG, PNG, WebP images online free. Fast, secure & easy.">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0K1T489JY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R0K1T489JY');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-7604876231244458" crossorigin="anonymous"></script>
+
+  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <style>
-    /* unchanged CSS - NO DESIGN CHANGES */
     body {font-family: 'Inter', Arial, sans-serif;margin: 0; padding: 0;background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);color: #222;}
-    header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(0,0,0,0.07);}
+    header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(33,150,243,0.09);}
     main {max-width: 980px;margin: 2em auto;background: #fff;padding: 2em 2em 1em;border-radius: 16px;box-shadow: 0 4px 32px rgba(33,150,243,0.07);}
-    .upload-zone {border: 2px dashed #90caf9;border-radius: 10px;background: #e3f2fd;padding: 2em 1em;text-align: center;color: #1976d2;font-size: 1.15em;margin-bottom: 1.5em;cursor: pointer;transition: background .13s;}
+    .upload-zone {border: 2px dashed #90caf9;border-radius: 10px;background: #e3f2fd;padding: 2em 1em;text-align: center;color: #1976d2;font-size: 1.15em;margin-bottom: 1.5em;cursor: pointer;transition: background 0.2s;}
     .upload-zone.dragover {background: #bbdefb;border-color: #2196f3;color: #0d47a1;}
     .upload-btn-group {margin-top: 1em;display: flex;gap: 1em;justify-content: center;flex-wrap: wrap;}
-    .upload-btn {padding: .65em 1.4em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .13s;box-shadow: 0 2px 8px rgba(33,150,243,0.09);margin: 0 3px;}
+    .upload-btn {padding: .65em 1.4em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .18s;}
     .supported-types {color: #1565c0;font-size: .98em;margin-top: 10px;background: #e8eaf6;border-radius: 5px;display: inline-block;padding: 4px 14px;font-weight: 500;}
     .preview-row {display: flex;gap: 2em;align-items: flex-start;margin-bottom: 1em;justify-content: center;}
     @media(max-width:700px){.preview-row { flex-direction: column; gap: 1em;}main { padding: 1em;}.upload-btn-group { flex-direction: column; gap: .7em;}}
@@ -114,7 +108,7 @@
     .resize-unit-label {color: #1976d2;font-weight: 600;margin-right: 8px;}
     .error-msg { color: #cb2431; font-size: 1em; margin-top: .6em;}
     .success-msg { color: #388e3c; font-size: 1em; margin-top: .6em;}
-    .btn {padding: .6em 1.5em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .13s;box-shadow: 0 2px 8px rgba(33,150,243,0.09);margin-top: 10px;}
+    .btn {padding: .6em 1.5em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .18s;}
     .btn:disabled { background: #aec4e6; cursor: not-allowed;}
     .reset-btn {padding: .4em 1.1em;background: #bbb;color: #fff;border: none;border-radius: 4px;font-size: .97em;font-weight: 600;margin-left: 16px;cursor: pointer;transition: background .13s;}
     .reset-btn:hover { background: #757575;}
@@ -129,7 +123,7 @@
 </head>
 <body>
   <header>
-    Smart Image Compressor
+    <h1>Smart Image Compressor</h1>
   </header>
   <main>
     <div class="upload-zone" id="uploadZone">
@@ -145,7 +139,7 @@
     <div class="preview-row">
       <div class="card" id="originalCard">
         <div style="font-weight:600; margin-bottom:5px;">Original</div>
-        <img id="originalPreview" class="preview-img" src="" alt="" style="display:none;" crossorigin="anonymous">
+        <img id="originalPreview" class="preview-img" src="" alt="Original Image Preview" style="display:none;" crossorigin="anonymous">
         <div style="margin-top:10px;">
           <button id="openCropBtn" class="btn" style="display:none;">Crop Image</button>
           <button id="rotateBtn" class="btn" style="display:none;">Rotate 90°</button>
@@ -154,7 +148,7 @@
       </div>
       <div class="card" id="compressedCard">
         <div style="font-weight:600; margin-bottom:5px;">Compressed</div>
-        <img id="compressedPreview" class="preview-img" src="" alt="" style="display:none;" crossorigin="anonymous">
+        <img id="compressedPreview" class="preview-img" src="" alt="Compressed Image Preview" style="display:none;" crossorigin="anonymous">
         <div class="info-row" id="compressedInfo"></div>
       </div>
     </div>
@@ -218,7 +212,7 @@
     <div id="about-popup-content">
       <h2>About Smart Image Compressor</h2>
       <p>
-        <strong>Smart Image Compressor</strong> is a free, fast, and secure online tool for compressing and resizing images. It supports JPEG, PNG, and WebP formats. The app is designed for simplicity—no sign-up or installation required.
+        <strong>Smart Image Compressor</strong> is a free, fast, and secure online tool for compressing and resizing images. It supports JPEG, PNG, and WebP formats. The app is designed for simplicity, privacy, and speed.
       </p>
       <h3>Features</h3>
       <ul>
@@ -252,14 +246,14 @@
       </ul>
       <h3>Contact & Feedback</h3>
       <p>
-  If you have suggestions or found a bug, please reach out at 
-  <a href="mailto:skycommunics@gmail.com">skycommunics@gmail.com</a>.
+        If you have suggestions or found a bug, please reach out at 
+        <a href="mailto:skycommunics@gmail.com">skycommunics@gmail.com</a>.
       </p>
       <button id="about-close">Close</button>
     </div>
   </div>
   <script>
-    // About popup logic
+    // About popup logic and main JS code (unchanged)
     document.addEventListener('DOMContentLoaded', function(){
       var aboutLink = document.getElementById('about-link');
       var aboutPopup = document.getElementById('about-popup');
@@ -271,12 +265,11 @@
       aboutClose.addEventListener('click', function(){
         aboutPopup.style.display = 'none';
       });
-      // Optional: close on outside click
       aboutPopup.addEventListener('click', function(e){
         if(e.target === aboutPopup) aboutPopup.style.display = 'none';
       });
 
-      // Compressor JS code (unchanged, paste your previous code here below)
+      // Compressor JS code (unchanged)
       const DECIMALS = 4;
       function getDPI() { return 96; }
       function unitConvert(val, from, to) {
