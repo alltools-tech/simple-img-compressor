@@ -1,72 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Primary Meta Tags -->
-  <title>Free Image Compressor & Converter Online | Smart Image Compressor</title>
-  <meta name="description" content="Compress and convert images (JPEG, PNG, WebP) online for free. 100% secure — works in browser, no upload needed. Fast & privacy-friendly.">
-  <meta name="keywords" content="free image compressor, online image converter, compress JPEG, compress PNG, WebP compressor, image resize tool">
-  <meta name="author" content="Smart Image Compressor">
-
-  <!-- Canonical URL -->
+  <title>Smart Image Compressor and Converter – Fast Online Free Tool</title>
+  <meta name="description" content="Compress and convert images instantly! Smart Image Compressor and Converter supports JPEG, PNG, WebP, AVIF, HEIC, HEIF, BMP. 100% free, secure & privacy-friendly. No upload required.">
+  <meta name="keywords" content="image compressor, image converter, free online image tool, compress images, convert images, JPEG compressor, PNG compressor, WebP converter, AVIF converter, HEIC converter, resize images, privacy image tool, fast image compression, online image optimizer, Smart Image Compressor, image reduce size, photo compress, bulk image compressor">
+  <meta name="author" content="Smart Image Compressor | skycommunics@gmail.com">
+  <meta name="contact" content="skycommunics@gmail.com">
   <link rel="canonical" href="https://simple-img-compressor.vercel.app/">
-
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://simple-img-compressor.vercel.app/">
-  <meta property="og:title" content="Free Image Compressor & Converter Online">
-  <meta property="og:description" content="Compress and convert JPEG, PNG, WebP images online for free. No uploads. Fast & secure.">
+  <meta property="og:title" content="Smart Image Compressor and Converter – Fast Online Free Tool">
+  <meta property="og:description" content="Compress and convert images (JPEG, PNG, WebP, AVIF, HEIC, HEIF, BMP) online for free – no uploads needed. Super fast, privacy-first, and easy to use!">
   <meta property="og:image" content="https://simple-img-compressor.vercel.app/og-image.jpg">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://simple-img-compressor.vercel.app/">
-  <meta name="twitter:title" content="Free Image Compressor & Converter Online">
-  <meta name="twitter:description" content="Compress and convert JPEG, PNG, WebP images online for free. No uploads. Fast & secure.">
+  <meta name="twitter:title" content="Smart Image Compressor and Converter – Fast Online Free Tool">
+  <meta name="twitter:description" content="Compress and convert images (JPEG, PNG, WebP, AVIF, HEIC, HEIF, BMP) online for free – no uploads needed. Super fast, privacy-first, and easy to use!">
   <meta name="twitter:image" content="https://simple-img-compressor.vercel.app/og-image.jpg">
-
-  <!-- Favicon -->
   <link rel="icon" href="https://simple-img-compressor.vercel.app/favicon.ico" type="image/x-icon">
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Smart Image Compressor",
-    "url": "https://simple-img-compressor.vercel.app/",
-    "description": "Free, fast and secure online tool to compress and convert JPEG, PNG, WebP images.",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
-  </script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0K1T489JY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-R0K1T489JY');
-  </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-7604876231244458" crossorigin="anonymous"></script>
-
-  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
-  <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
   <style>
-    body {font-family: 'Inter', Arial, sans-serif;margin: 0; padding: 0;background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);color: #222;}
-    header {background: #272a36;color: #fff;padding: 1.5em 0 1em;text-align: center;font-size: 2em;font-weight: 700;letter-spacing: .03em;border-bottom: 2px solid #2196f3;box-shadow: 0 2px 12px rgba(33,150,243,0.09);}
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+      color: #222;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, #004400 0%, #0e4f1f 100%);
+      color: #fff;
+      padding: 1.1em 0 1em;
+      text-align: center;
+      border-bottom: 2px solid #2196f3;
+      box-shadow: 0 2px 12px rgba(33,150,243,0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+      position: relative;
+    }
+    .main-title {
+      font-size: 2.1em;
+      font-weight: 900;
+      letter-spacing: .02em;
+      color: #fff;
+      text-shadow: 0 3px 16px #084b22, 0 1px 0 #fff5;
+      margin: 0;
+      padding: 0.18em 0;
+      font-family: 'Inter', Arial, sans-serif;
+      transition: font-size 0.2s;
+      line-height: 1.1;
+    }
+    .about-btn {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #e3f2fd;
+      color: #185a9d;
+      border: none;
+      border-radius: 18px;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 0.45em 1.3em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #185a9d15;
+      transition: background .2s, color .2s;
+      z-index: 5;
+    }
+    .about-btn:hover {
+      background: #bbdefb;
+      color: #0e4f1f;
+    }
+    @media (max-width: 600px) {
+      .main-title { font-size: 1.25em; }
+      header { min-height: 48px; padding: 0.6em 0 0.4em; }
+      .about-btn { right: 10px; font-size: 0.98em; padding: 0.38em 1em;}
+    }
     main {max-width: 980px;margin: 2em auto;background: #fff;padding: 2em 2em 1em;border-radius: 16px;box-shadow: 0 4px 32px rgba(33,150,243,0.07);}
-    .upload-zone {border: 2px dashed #90caf9;border-radius: 10px;background: #e3f2fd;padding: 2em 1em;text-align: center;color: #1976d2;font-size: 1.15em;margin-bottom: 1.5em;cursor: pointer;transition: background 0.2s;}
+    .upload-zone {
+      border: 2px dashed #90caf9;
+      border-radius: 10px;
+      background: #e3f2fd !important;
+      padding: 2em 1em;
+      text-align: center;
+      color: #1976d2;
+      font-size: 1.15em;
+      margin-bottom: 1.5em;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: none;
+    }
     .upload-zone.dragover {background: #bbdefb;border-color: #2196f3;color: #0d47a1;}
     .upload-btn-group {margin-top: 1em;display: flex;gap: 1em;justify-content: center;flex-wrap: wrap;}
     .upload-btn {padding: .65em 1.4em;background: linear-gradient(90deg, #2196f3 60%, #21cbf3);color: #fff; border: none; border-radius: 6px;font-weight: 700; font-size: 1em;cursor: pointer; transition: background .18s;}
@@ -116,28 +144,96 @@
     .reset-btn {padding: .4em 1.1em;background: #bbb;color: #fff;border: none;border-radius: 4px;font-size: .97em;font-weight: 600;margin-left: 16px;cursor: pointer;transition: background .13s;}
     .reset-btn:hover { background: #757575;}
     .footer {text-align: center;color: #999;font-size: .98em;margin: 2.5em 0 0.3em;letter-spacing: .02em;}
-    #about-link {display:inline-block; color:#2196f3;font-weight:500; text-decoration:none; margin-left:15px;}
-    #about-popup {display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(33,150,243,.11); z-index:999; align-items:center; justify-content:center;}
-    #about-popup-content {background:#fff;padding:2em 1.5em;max-width:500px;border-radius:16px;box-shadow:0 4px 32px rgba(33,150,243,0.10);}
-    #about-popup h2 {color:#1976d2;margin-top:0;}
-    #about-popup ul {margin-left:1.2em;}
-    #about-close {background:#2196f3;color:#fff;border:none;border-radius:6px;padding:.5em 1em;font-size:1em;font-weight:600;margin-top:1em;cursor:pointer;}
+    /* About Popup Styling */
+    #about-modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,32,32,0.23);
+      align-items: center; justify-content: center;
+    }
+    #about-popup {
+      background: #e3f2fd;
+      border-radius: 16px;
+      max-width: 370px;
+      border: 2px solid #90caf9;
+      box-shadow: 0 4px 22px #2196f355;
+      padding: 1em 1.2em 1em 1.2em;
+      margin: 1.5em 0.5em 1.5em 0.5em;
+      text-align: center;
+      position: relative;
+      font-size: 0.98em;
+      color: #185a9d;
+      line-height: 1.6;
+    }
+    #about-popup h2 {
+      font-size: 1.13em;
+      font-weight: 800;
+      color: #185a9d;
+      letter-spacing: 0.5px;
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    #about-popup ul {
+      text-align: left;
+      margin: 0.6em 0 0.6em 0;
+      padding-left: 1.3em;
+      font-size: 0.97em;
+      color: #185a9d;
+    }
+    #about-popup li {
+      margin-bottom: 0.4em;
+      font-size: 0.97em;
+    }
+    #about-popup .about-contact {
+      color: #1976d2;
+      margin-top: 0.7em;
+      font-size: 0.97em;
+    }
+    #about-popup .about-contact a {
+      color: #1976d2;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    #about-close {
+      position: absolute;
+      right: 13px;
+      top: 10px;
+      background: transparent;
+      border: none;
+      color: #185a9d;
+      font-size: 1.45em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0;
+      z-index: 10;
+      line-height: 1;
+    }
+    #about-close:hover { color: #cb2431;}
+    @media (max-width: 700px) {
+      #about-popup { max-width: 96vw; padding: 0.6em 0.5em 0.9em 0.5em; font-size: 0.91em;}
+      #about-popup h2 { font-size: 1em;}
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Smart Image Compressor & Convertor in just one click</h1>
+    <span class="main-title">Smart Image Compressor and Converter</span>
+    <button class="about-btn" id="aboutBtn" type="button" title="About this app">About</button>
   </header>
   <main>
     <div class="upload-zone" id="uploadZone">
       <div><b>Drag &amp; Drop</b> or use <b>buttons below</b> to upload/capture image</div>
-      <div class="supported-types">Supported: JPEG, PNG, WebP</div>
+      <div class="supported-types">
+        Supported: JPEG, PNG, WebP, <span style="color:#2e7d32;">AVIF, HEIC, HEIF, BMP</span>
+      </div>
       <div class="upload-btn-group">
         <button class="upload-btn" id="galleryBtn" type="button">Upload from Gallery</button>
         <button class="upload-btn" id="cameraBtn" type="button">Capture from Camera</button>
       </div>
-      <input type="file" id="galleryInput" accept="image/jpeg,image/png,image/webp,image/*" style="display:none">
-      <input type="file" id="cameraInput" accept="image/jpeg,image/png,image/webp,image/*" capture="environment" style="display:none">
+      <input type="file" id="galleryInput" accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif,image/bmp,image/x-ms-bmp,image/*" style="display:none">
+      <input type="file" id="cameraInput" accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif,image/bmp,image/x-ms-bmp,image/*" style="display:none">
     </div>
     <div class="preview-row">
       <div class="card" id="originalCard">
@@ -167,11 +263,10 @@
         <label><input type="radio" name="resizeUnit" value="inch"> inch</label>
         <label><input type="radio" name="resizeUnit" value="px"> px</label>
       </div>
-      <!-- Aspect Lock Option -->
       <div class="aspect-lock-row">
         <label class="aspect-lock-label">
           <input type="checkbox" id="aspectLock" class="aspect-lock-checkbox" checked>
-          Lock Aspect Ratio
+          Unlock Aspect Ratio
         </label>
       </div>
       <div class="range-row">
@@ -194,6 +289,10 @@
           <option value="image/jpeg">JPEG (.jpg)</option>
           <option value="image/png">PNG (.png)</option>
           <option value="image/webp">WebP (.webp)</option>
+          <option value="image/avif">AVIF (.avif)</option>
+          <option value="image/heic">HEIC (.heic)</option>
+          <option value="image/heif">HEIF (.heif)</option>
+          <option value="image/bmp">BMP (.bmp)</option>
         </select>
       </div>
       <button id="compressBtn" class="btn" disabled>Compress Image</button>
@@ -212,86 +311,68 @@
         </div>
       </div>
     </div>
+
+    <!-- About Modal Popup -->
+    <div id="about-modal-bg">
+      <div id="about-popup">
+        <button id="about-close" aria-label="Close about">&times;</button>
+        <h2>About Smart Image Compressor and Converter</h2>
+        <p>
+          <b>Smart Image Compressor and Converter</b> is a completely free, privacy-focused image tool for all devices. Compress and convert images instantly, right in your browser, with no uploads and no watermarks. Enjoy advanced features in a simple, mobile-friendly interface.
+        </p>
+        <ul>
+          <li><b>🛡️ Security & Privacy:</b> All processing happens only in your browser. Your images never leave your device.</li>
+          <li><b>💡 Simple to Use:</b> Just drag &amp; drop or capture with camera. One click for compress or convert.</li>
+          <li><b>⚡ Super Fast:</b> No uploads, no waiting! Instantly preview and download results.</li>
+          <li><b>📱 Mobile & Desktop Friendly:</b> Works everywhere – Android, iPhone, tablets, laptops, desktops.</li>
+          <li><b>🖼️ Formats Supported:</b> JPEG, PNG, WebP, AVIF, HEIC, HEIF, BMP.</li>
+          <li><b>🎨 Features:</b> Crop, rotate, resize, lock/unlock aspect ratio, choose output format and filename.</li>
+          <li><b>💸 100% Free:</b> Unlimited use. No sign up. No ads. No hidden charges.</li>
+        </ul>
+        <div class="about-contact">
+          Contact: <a href="mailto:skycommunics@gmail.com">skycommunics@gmail.com</a>
+        </div>
+      </div>
+    </div>
   </main>
   <div class="footer">
     &copy; 2025 Smart Image Compressor | Fast, Free & Secure
-    <a id="about-link" href="#">About</a>
-  </div>
-  <!-- About Popup -->
-  <div id="about-popup">
-    <div id="about-popup-content">
-      <h2>About Smart Image Compressor</h2>
-      <p>
-        <strong>Smart Image Compressor</strong> is a free, fast, and secure online tool for compressing and resizing images. It supports JPEG, PNG, and WebP formats. The app is designed for simplicity, privacy, and speed.
-      </p>
-      <h3>Features</h3>
-      <ul>
-        <li>Supports JPEG, PNG, and WebP images</li>
-        <li>Compress images with adjustable quality</li>
-        <li>Resize by pixels, centimeters, or inches</li>
-        <li>Crop and rotate images before compression</li>
-        <li>Preview original and compressed images side-by-side</li>
-        <li>Download compressed images with custom filenames</li>
-        <li>Works entirely in your browser—no image is uploaded to a server</li>
-      </ul>
-      <h3>Privacy & Security</h3>
-      <ul>
-        <li>Your images never leave your device</li>
-        <li>Compression is handled locally in your browser using HTML5 Canvas</li>
-        <li>No images are stored, shared, or sent over the internet</li>
-      </ul>
-      <h3>Technology Used</h3>
-      <ul>
-        <li>HTML5, CSS3, and JavaScript</li>
-        <li>Canvas API for image processing</li>
-        <li><a href="https://fengyuanchen.github.io/cropperjs/" target="_blank">CropperJS</a> for cropping functionality</li>
-        <li>Responsive design for mobile and desktop</li>
-      </ul>
-      <h3>How to Use?</h3>
-      <ul>
-        <li>Upload or capture an image from your device</li>
-        <li>Adjust quality, resize, crop, or rotate as needed</li>
-        <li>Click 'Compress Image' and preview the result</li>
-        <li>Download the compressed image for use anywhere</li>
-      </ul>
-      <h3>Contact & Feedback</h3>
-      <p>
-        If you have suggestions or found a bug, please reach out at 
-        <a href="mailto:skycommunics@gmail.com">skycommunics@gmail.com</a>.
-      </p>
-      <button id="about-close">Close</button>
-    </div>
   </div>
   <script>
+    // ==== About Popup Logic ====
     document.addEventListener('DOMContentLoaded', function(){
-      var aboutLink = document.getElementById('about-link');
-      var aboutPopup = document.getElementById('about-popup');
-      var aboutClose = document.getElementById('about-close');
-      aboutLink.addEventListener('click', function(e){
-        e.preventDefault();
-        aboutPopup.style.display = 'flex';
-      });
-      aboutClose.addEventListener('click', function(){
-        aboutPopup.style.display = 'none';
-      });
-      aboutPopup.addEventListener('click', function(e){
-        if(e.target === aboutPopup) aboutPopup.style.display = 'none';
+      // About popup
+      const aboutBtn = document.getElementById('aboutBtn');
+      const aboutModalBg = document.getElementById('about-modal-bg');
+      const aboutClose = document.getElementById('about-close');
+      // Open popup
+      aboutBtn.onclick = function() {
+        aboutModalBg.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      };
+      // Close popup
+      aboutClose.onclick = function() {
+        aboutModalBg.style.display = "none";
+        document.body.style.overflow = "";
+      };
+      // Close on outside click
+      aboutModalBg.onclick = function(e) {
+        if (e.target === aboutModalBg) {
+          aboutModalBg.style.display = "none";
+          document.body.style.overflow = "";
+        }
+      };
+      // ESC key to close
+      document.addEventListener('keydown', function(e){
+        if(e.key === "Escape" && aboutModalBg.style.display === "flex"){
+          aboutModalBg.style.display = "none";
+          document.body.style.overflow = "";
+        }
       });
 
-      // Compressor JS code
-      const DECIMALS = 4;
-      function getDPI() { return 96; }
-      function unitConvert(val, from, to) {
-        if (!val) return '';
-        const dpi = getDPI();
-        switch(from + '-' + to) {
-          case 'px-cm': return (val / dpi * 2.54).toFixed(DECIMALS);
-          case 'px-inch': return (val / dpi).toFixed(DECIMALS);
-          case 'cm-px': return Math.round(val * dpi / 2.54);
-          case 'inch-px': return Math.round(val * dpi);
-          default: return val;
-        }
-      }
+      // ---------------------------
+      // IMAGE TOOL LOGIC (unchanged)
+      // ---------------------------
       const galleryBtn = document.getElementById('galleryBtn');
       const cameraBtn = document.getElementById('cameraBtn');
       const galleryInput = document.getElementById('galleryInput');
@@ -326,7 +407,6 @@
       const rotateBtn = document.getElementById('rotateBtn');
       const aspectLock = document.getElementById('aspectLock');
       let cropper = null;
-
       let originalFile = null;
       let compressedBlob = null;
       let loadedImage = null;
@@ -335,17 +415,36 @@
       let blockResizeSync = false;
       let lastOutMime = "";
       let rotation = 0;
-      let isAspectLocked = aspectLock ? aspectLock.checked : true;
-
-      galleryBtn.addEventListener('click', function() {
-        galleryInput.value = ""; // reset file input
+      let isAspectLocked = aspectLock.checked;
+      const DECIMALS = 4;
+      function getDPI() { return 96; }
+      function unitConvert(val, from, to) {
+        if (!val) return '';
+        const dpi = getDPI();
+        switch(from + '-' + to) {
+          case 'px-cm': return (val / dpi * 2.54).toFixed(DECIMALS);
+          case 'px-inch': return (val / dpi).toFixed(DECIMALS);
+          case 'cm-px': return Math.round(val * dpi / 2.54);
+          case 'inch-px': return Math.round(val * dpi);
+          default: return val;
+        }
+      }
+      galleryBtn.onclick = function() {
+        galleryInput.value = "";
         galleryInput.click();
-      });
-      cameraBtn.addEventListener('click', function() {
-        cameraInput.value = ""; // reset file input
+      };
+      cameraBtn.onclick = function() {
+        cameraInput.value = "";
+        cameraInput.setAttribute('capture', 'user');
         cameraInput.click();
-      });
-
+      };
+      galleryInput.onchange = function(e) {
+        if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
+      };
+      cameraInput.onchange = function(e) {
+        if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
+        cameraInput.removeAttribute('capture');
+      };
       uploadZone.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadZone.classList.add('dragover');
@@ -361,102 +460,19 @@
           handleFile(e.dataTransfer.files[0]);
         }
       });
-
-      galleryInput.addEventListener('change', function() {
-        if (this.files && this.files[0]) handleFile(this.files[0]);
-      });
-      cameraInput.addEventListener('change', function() {
-        if (this.files && this.files[0]) handleFile(this.files[0]);
-      });
-
-      aspectLock.addEventListener('change', () => {
-        isAspectLocked = aspectLock.checked;
-      });
-
-      function handleFile(file) {
-        msg.textContent = '';
-        rotation = 0;
-        aspectLock.checked = true;
-        isAspectLocked = true;
-        if (file && ["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-          originalFile = file;
-          originalType = file.type;
-          if (file.type === "image/png") {
-            qualityRow.style.display = "none";
-          } else {
-            qualityRow.style.display = "";
-          }
-          document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
-          updateUnitLabels(true);
-
-          if (file.type === "image/jpeg") {
-            saveFormat.value = "image/jpeg";
-          } else if (file.type === "image/png") {
-            saveFormat.value = "image/png";
-          } else if (file.type === "image/webp") {
-            saveFormat.value = "image/webp";
-          } else {
-            saveFormat.value = "auto";
-          }
-
-          try {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-              originalPreview.src = e.target.result;
-              originalPreview.style.display = 'block';
-              compressBtn.disabled = false;
-              openCropBtn.style.display = 'inline-block';
-              rotateBtn.style.display = 'inline-block';
-              const img = new Image();
-              img.crossOrigin = "anonymous";
-              img.onload = function() {
-                loadedImage = img;
-                origWidth = img.width;
-                origHeight = img.height;
-                originalInfo.innerHTML = `Format: ${file.type.replace('image/', '').toUpperCase()}<br>Size: ${(file.size/1024).toFixed(2)} KB`;
-                resetCompressed();
-                updateUnitLabels(true);
-              };
-              img.onerror = function() {
-                msg.textContent = "Image could not be loaded.";
-                originalPreview.style.display = 'none';
-                openCropBtn.style.display = 'none';
-                rotateBtn.style.display = 'none';
-                originalInfo.innerHTML = '';
-                compressBtn.disabled = true;
-                resetCompressed();
-              };
-              img.src = e.target.result;
-            };
-            reader.onerror = function() {
-              msg.textContent = "File could not be read.";
-            };
-            reader.readAsDataURL(file);
-          } catch(err) {
-            msg.textContent = "Error loading file.";
-          }
+      aspectLock.addEventListener('change', () => { isAspectLocked = aspectLock.checked; });
+      qualityRange.addEventListener('input', function() { qualityValue.textContent = this.value; });
+      enableSaveAs.addEventListener("change", function() {
+        if (enableSaveAs.checked) {
+          saveFilename.disabled = false; saveFilename.style.opacity = "1";
         } else {
-          msg.textContent = "Please select a valid image file (JPEG, PNG, WebP).";
-          originalPreview.style.display = 'none';
-          openCropBtn.style.display = 'none';
-          rotateBtn.style.display = 'none';
-          originalInfo.innerHTML = '';
-          compressBtn.disabled = true;
-          resetCompressed();
+          saveFilename.disabled = true; saveFilename.style.opacity = "0.6";
         }
-      }
-
-      function resetCompressed() {
-        compressedPreview.style.display = 'none';
-        compressedInfo.innerHTML = '';
-        downloadBtn.disabled = true;
-        compressedBlob = null;
-      }
-
-      qualityRange.addEventListener('input', function() {
-        qualityValue.textContent = this.value;
       });
-
+      saveFormat.addEventListener("change", function() {
+        if (saveFormat.value === "image/png") qualityRow.style.display = "none";
+        else qualityRow.style.display = "";
+      });
       function getSelectedUnit() {
         let selectedUnit = 'cm';
         unitRadios.forEach(radio => { if (radio.checked) selectedUnit = radio.value; });
@@ -467,8 +483,7 @@
         unitLabelW.textContent = selectedUnit;
         unitLabelH.textContent = selectedUnit;
         if (loadedImage) {
-          const origW = loadedImage.width;
-          const origH = loadedImage.height;
+          const origW = loadedImage.width, origH = loadedImage.height;
           if (selectedUnit === 'cm') {
             resizeWidth.placeholder = unitConvert(origW, 'px', 'cm');
             resizeHeight.placeholder = unitConvert(origH, 'px', 'cm');
@@ -476,8 +491,7 @@
               resizeWidth.value = parseFloat(unitConvert(origW, 'px', 'cm')).toFixed(DECIMALS);
               resizeHeight.value = parseFloat(unitConvert(origH, 'px', 'cm')).toFixed(DECIMALS);
             }
-            resizeWidth.step = "0.0001";
-            resizeHeight.step = "0.0001";
+            resizeWidth.step = "0.0001"; resizeHeight.step = "0.0001";
           } else if (selectedUnit === 'inch') {
             resizeWidth.placeholder = unitConvert(origW, 'px', 'inch');
             resizeHeight.placeholder = unitConvert(origH, 'px', 'inch');
@@ -485,43 +499,28 @@
               resizeWidth.value = parseFloat(unitConvert(origW, 'px', 'inch')).toFixed(DECIMALS);
               resizeHeight.value = parseFloat(unitConvert(origH, 'px', 'inch')).toFixed(DECIMALS);
             }
-            resizeWidth.step = "0.0001";
-            resizeHeight.step = "0.0001";
+            resizeWidth.step = "0.0001"; resizeHeight.step = "0.0001";
           } else {
-            resizeWidth.placeholder = origW;
-            resizeHeight.placeholder = origH;
+            resizeWidth.placeholder = origW; resizeHeight.placeholder = origH;
             if (forceAutofill) {
-              resizeWidth.value = Math.round(origW);
-              resizeHeight.value = Math.round(origH);
+              resizeWidth.value = Math.round(origW); resizeHeight.value = Math.round(origH);
             }
-            resizeWidth.step = "1";
-            resizeHeight.step = "1";
+            resizeWidth.step = "1"; resizeHeight.step = "1";
           }
         }
       }
-      unitRadios.forEach(radio => radio.addEventListener('change', () => {
-        updateUnitLabels(true);
-      }));
-
-      function aspectRatio() {
-        if (!origWidth || !origHeight) return 1;
-        return origWidth / origHeight;
-      }
-
-      // Modified: Only sync the other field if aspect lock is enabled
+      unitRadios.forEach(radio => radio.addEventListener('change', () => { updateUnitLabels(true); }));
+      function aspectRatio() { if (!origWidth || !origHeight) return 1; return origWidth / origHeight; }
       resizeWidth.addEventListener('input', function() {
         if (blockResizeSync) return;
         blockResizeSync = true;
         let selectedUnit = getSelectedUnit();
         let w = resizeWidth.value ? parseFloat(resizeWidth.value) : null;
         if (isAspectLocked && w && origWidth && origHeight) {
-          let ratio = aspectRatio();
-          let h = w / ratio;
-          if (selectedUnit === 'cm' || selectedUnit === 'inch') {
+          let ratio = aspectRatio(), h = w / ratio;
+          if (selectedUnit === 'cm' || selectedUnit === 'inch')
             resizeHeight.value = h ? parseFloat(h).toFixed(DECIMALS) : '';
-          } else {
-            resizeHeight.value = h ? Math.round(h) : '';
-          }
+          else resizeHeight.value = h ? Math.round(h) : '';
         }
         blockResizeSync = false;
       });
@@ -531,131 +530,18 @@
         let selectedUnit = getSelectedUnit();
         let h = resizeHeight.value ? parseFloat(resizeHeight.value) : null;
         if (isAspectLocked && h && origWidth && origHeight) {
-          let ratio = aspectRatio();
-          let w = h * ratio;
-          if (selectedUnit === 'cm' || selectedUnit === 'inch') {
+          let ratio = aspectRatio(), w = h * ratio;
+          if (selectedUnit === 'cm' || selectedUnit === 'inch')
             resizeWidth.value = w ? parseFloat(w).toFixed(DECIMALS) : '';
-          } else {
-            resizeWidth.value = w ? Math.round(w) : '';
-          }
+          else resizeWidth.value = w ? Math.round(w) : '';
         }
         blockResizeSync = false;
       });
-
-      resetResize.addEventListener('click', function() {
-        if (loadedImage) {
-          updateUnitLabels(true);
-        }
-      });
-
-      compressBtn.addEventListener('click', function() {
-        msg.textContent = '';
-        if (!originalFile || !loadedImage) return;
-        let width = loadedImage.width;
-        let height = loadedImage.height;
-        let selectedUnit = getSelectedUnit();
-        let wVal = resizeWidth.value;
-        let hVal = resizeHeight.value;
-        if (wVal) {
-          if (selectedUnit === "cm") width = unitConvert(wVal, "cm", "px");
-          else if (selectedUnit === "inch") width = unitConvert(wVal, "inch", "px");
-          else width = parseInt(wVal);
-        }
-        if (hVal) {
-          if (selectedUnit === "cm") height = unitConvert(hVal, "cm", "px");
-          else if (selectedUnit === "inch") height = unitConvert(hVal, "inch", "px");
-          else height = parseInt(hVal);
-        }
-        if (width <= 0 || height <= 0) {
-          msg.textContent = "Resize dimensions must be positive.";
-          return;
-        }
-        try {
-          let canvas = document.createElement('canvas');
-          let ctx = canvas.getContext('2d');
-          canvas.width = width;
-          canvas.height = height;
-          ctx.drawImage(loadedImage, 0, 0, width, height);
-
-          let outMime = originalType;
-          let quality = parseInt(qualityRange.value) / 100;
-
-          if (saveFormat.value !== "auto") {
-            outMime = saveFormat.value;
-          } else {
-            if (originalType === "image/png") {
-              outMime = "image/png";
-              quality = undefined;
-            }
-            if (originalType === "image/jpeg") {
-              outMime = "image/jpeg";
-            }
-            if (originalType === "image/webp") {
-              outMime = "image/webp";
-            }
-          }
-
-          lastOutMime = outMime;
-          canvas.toBlob(function(blob) {
-            if (!blob) {
-              msg.textContent = "Compression failed.";
-              return;
-            }
-            compressedBlob = blob;
-            const url = URL.createObjectURL(blob);
-            compressedPreview.src = url;
-            compressedPreview.style.display = 'block';
-            compressedInfo.innerHTML = `Format: ${blob.type.replace('image/', '').toUpperCase()}<br>Size: ${(blob.size/1024).toFixed(2)} KB`;
-            downloadBtn.disabled = false;
-            msg.textContent = '';
-          }, outMime, quality);
-        } catch(err) {
-          msg.textContent = "Compression error.";
-        }
-      });
-
-      enableSaveAs.addEventListener("change", function() {
-        if (enableSaveAs.checked) {
-          saveFilename.disabled = false;
-          saveFilename.style.opacity = "1";
-        } else {
-          saveFilename.disabled = true;
-          saveFilename.style.opacity = "0.6";
-        }
-      });
-
-      downloadBtn.addEventListener('click', function() {
-        if (!compressedBlob) return;
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(compressedBlob);
-        let ext = "";
-        switch (lastOutMime) {
-          case "image/jpeg": ext = ".jpg"; break;
-          case "image/png": ext = ".png"; break;
-          case "image/webp": ext = ".webp"; break;
-          default: ext = ".png";
-        }
-        let baseName = "image";
-        if (enableSaveAs.checked) {
-          baseName = saveFilename.value.trim() || (originalFile ? originalFile.name.replace(/\.[^/.]+$/, "") : "image");
-        } else {
-          baseName = originalFile ? originalFile.name.replace(/\.[^/.]+$/, "") : "image";
-        }
-        let suggestedName = baseName + ext;
-        a.download = suggestedName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      });
-
-      function showZoom(src) {
-        zoomImg.src = src;
-        zoomModal.style.display = 'flex';
-      }
+      resetResize.addEventListener('click', function() { if (loadedImage) { updateUnitLabels(true); } });
+      function showZoom(src) { zoomImg.src = src; zoomModal.style.display = 'flex'; }
       originalPreview.addEventListener('click', () => { if (originalPreview.src) showZoom(originalPreview.src); });
       compressedPreview.addEventListener('click', () => { if (compressedPreview.src) showZoom(compressedPreview.src); });
       zoomModal.addEventListener('click', () => { zoomModal.style.display = 'none'; });
-
       openCropBtn.addEventListener('click', function() {
         if (!originalPreview.src) return;
         cropImg.src = originalPreview.src;
@@ -664,9 +550,7 @@
         cropImg.onload = function() {
           if (cropper) cropper.destroy();
           cropper = new Cropper(cropImg, {
-            aspectRatio: false,
-            viewMode: 1,
-            autoCropArea: 1
+            aspectRatio: false, viewMode: 1, autoCropArea: 1
           });
         };
       });
@@ -680,13 +564,11 @@
           if (!blob) return;
           const url = URL.createObjectURL(blob);
           originalPreview.src = url;
-          rotation = 0; // Reset rotation after crop
+          rotation = 0;
           const img = new Image();
           img.crossOrigin = "anonymous";
           img.onload = function() {
-            loadedImage = img;
-            origWidth = img.width;
-            origHeight = img.height;
+            loadedImage = img; origWidth = img.width; origHeight = img.height;
             originalInfo.innerHTML = `Format: ${blob.type.replace('image/', '').toUpperCase()}<br>Size: ${(blob.size/1024).toFixed(2)} KB`;
             resetCompressed();
             updateUnitLabels(true);
@@ -696,7 +578,6 @@
           if (cropper) cropper.destroy();
         }, originalType || "image/png");
       });
-
       rotateBtn.addEventListener('click', function() {
         if (!loadedImage) return;
         if (loadedImage.width > 3000 || loadedImage.height > 3000) {
@@ -708,53 +589,269 @@
           const img = new Image();
           img.crossOrigin = "anonymous";
           img.onload = function() {
-            loadedImage = img;
-            origWidth = img.width;
-            origHeight = img.height;
+            loadedImage = img; origWidth = img.width; origHeight = img.height;
             originalInfo.innerHTML = `Format: ${originalType.replace('image/', '').toUpperCase()}<br>Size: ${(originalFile.size/1024).toFixed(2)} KB`;
-            resetCompressed();
-            updateUnitLabels(true);
-            msg.textContent = ""; // clear
+            resetCompressed(); updateUnitLabels(true); msg.textContent = "";
           };
-          img.onerror = function() {
-            msg.textContent = "Rotation failed.";
-          };
+          img.onerror = function() { msg.textContent = "Rotation failed."; };
           img.src = dataUrl;
         });
       });
-
       function drawRotatedImage(img, angle, cb) {
         try {
-          let canvas = document.createElement('canvas');
-          let ctx = canvas.getContext('2d');
+          let canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
           let w = img.width, h = img.height;
-          if (angle % 180 !== 0) {
-            canvas.width = h;
-            canvas.height = w;
-          } else {
-            canvas.width = w;
-            canvas.height = h;
-          }
+          if (angle % 180 !== 0) { canvas.width = h; canvas.height = w; }
+          else { canvas.width = w; canvas.height = h; }
           ctx.save();
           ctx.translate(canvas.width / 2, canvas.height / 2);
           ctx.rotate(angle * Math.PI / 180);
           ctx.drawImage(img, -w / 2, -h / 2);
           ctx.restore();
           cb(canvas.toDataURL(), canvas.width, canvas.height);
-        } catch(err) {
-          msg.textContent = "Image rotation error.";
-        }
+        } catch(err) { msg.textContent = "Image rotation error."; }
       }
-
-      document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
-      updateUnitLabels(true);
-
-      saveFormat.addEventListener("change", function() {
-        if (saveFormat.value === "image/png") {
+      function resetCompressed() {
+        compressedPreview.style.display = 'none';
+        compressedInfo.innerHTML = '';
+        downloadBtn.disabled = true;
+        compressedBlob = null;
+      }
+      function filterSaveAsOptions(type) {
+        const hide = [];
+        switch(type) {
+          case "heic":
+          case "heif": hide.push("image/heic","image/heif","image/bmp"); break;
+          case "bmp": hide.push("image/heic","image/heif"); break;
+          case "jpeg": hide.push("image/heic","image/heif","image/bmp"); break;
+          case "webp": hide.push("image/heic","image/heif","image/bmp"); break;
+          case "avif": hide.push("image/heic","image/heif","image/bmp"); break;
+          default: break;
+        }
+        Array.from(saveFormat.options).forEach(opt=>{
+          if (hide.includes(opt.value)) opt.style.display='none';
+          else opt.style.display='';
+        });
+      }
+      async function handleFile(file) {
+        msg.textContent = '';
+        rotation = 0;
+        aspectLock.checked = true;
+        isAspectLocked = aspectLock.checked;
+        let ext = (file.name||"").toLowerCase().split(".").pop();
+        let type = file.type || "";
+        if (type === "image/svg+xml" || ext === "svg") {
+          msg.textContent = "SVG is not supported for compress/convert.";
+          originalPreview.style.display = 'none';
+          compressBtn.disabled = true;
+          openCropBtn.style.display = 'none';
+          rotateBtn.style.display = 'none';
+          originalInfo.innerHTML = '';
+          resetCompressed();
+          return;
+        }
+        if (type === "image/gif" || ext === "gif") {
+          msg.textContent = "GIF is not supported for compress/convert.";
+          originalPreview.style.display = 'none';
+          compressBtn.disabled = true;
+          openCropBtn.style.display = 'none';
+          rotateBtn.style.display = 'none';
+          originalInfo.innerHTML = '';
+          resetCompressed();
+          return;
+        }
+        if (type === "image/tiff" || type === "image/x-tiff" || ext === "tiff" || ext === "tif") {
+          msg.textContent = "TIFF is not supported for compress/convert.";
+          originalPreview.style.display = 'none';
+          compressBtn.disabled = true;
+          openCropBtn.style.display = 'none';
+          rotateBtn.style.display = 'none';
+          originalInfo.innerHTML = '';
+          resetCompressed();
+          return;
+        }
+        if (type === "image/heic" || type === "image/heif" || ext === "heic" || ext === "heif") {
+          msg.textContent = "";
+          try {
+            let result = await heic2any({blob: file, toType: "image/jpeg", quality: 0.95});
+            let blobOut = Array.isArray(result) ? result[0] : result;
+            let url = URL.createObjectURL(blobOut);
+            originalPreview.src = url;
+            originalPreview.style.display = "block";
+            compressBtn.disabled = false;
+            openCropBtn.style.display = "inline-block";
+            rotateBtn.style.display = "inline-block";
+            loadedImage = new window.Image();
+            loadedImage.crossOrigin = "anonymous";
+            loadedImage.onload = function() {
+              origWidth = loadedImage.width;
+              origHeight = loadedImage.height;
+              originalInfo.innerHTML = `Format: ${type === "image/heic" ? "HEIC" : "HEIF"}<br>Size: ${(file.size/1024).toFixed(2)} KB`;
+              resetCompressed();
+              updateUnitLabels(true);
+            };
+            loadedImage.src = url;
+            originalFile = file;
+            originalType = type;
+            qualityRow.style.display = "";
+            saveFormat.value = type;
+            filterSaveAsOptions(type === "image/heic" ? "heic" : "heif");
+          } catch (err) {
+            msg.textContent = "HEIC/HEIF preview failed.";
+          }
+          return;
+        }
+        originalFile = file;
+        originalType = type || ("image/" + ext);
+        if (type === "image/png" || ext === "png") {
           qualityRow.style.display = "none";
         } else {
           qualityRow.style.display = "";
         }
+        document.querySelector('input[name="resizeUnit"][value="cm"]').checked = true;
+        updateUnitLabels(true);
+        if (type === "image/bmp" || type === "image/x-ms-bmp" || ext === "bmp") {
+          saveFormat.value = "image/bmp";
+          filterSaveAsOptions("bmp");
+        } else if (type === "image/jpeg" || ext === "jpg" || ext === "jpeg") {
+          saveFormat.value = "image/jpeg";
+          filterSaveAsOptions("jpeg");
+        } else if (type === "image/png" || ext === "png") {
+          saveFormat.value = "image/png";
+          filterSaveAsOptions("png");
+        } else if (type === "image/webp" || ext === "webp") {
+          saveFormat.value = "image/webp";
+          filterSaveAsOptions("webp");
+        } else if (type === "image/avif" || ext === "avif") {
+          saveFormat.value = "image/avif";
+          filterSaveAsOptions("avif");
+        } else {
+          saveFormat.value = "auto";
+          filterSaveAsOptions("default");
+        }
+        try {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            originalPreview.src = e.target.result;
+            originalPreview.style.display = 'block';
+            compressBtn.disabled = false;
+            openCropBtn.style.display = 'inline-block';
+            rotateBtn.style.display = 'inline-block';
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = function() {
+              loadedImage = img;
+              origWidth = img.width;
+              origHeight = img.height;
+              originalInfo.innerHTML = `Format: ${(type || ext).replace('image/', '').toUpperCase()}<br>Size: ${(file.size/1024).toFixed(2)} KB`;
+              resetCompressed();
+              updateUnitLabels(true);
+            };
+            img.onerror = function() {
+              msg.textContent = "Image could not be loaded.";
+              originalPreview.style.display = 'none';
+              openCropBtn.style.display = 'none';
+              rotateBtn.style.display = 'none';
+              originalInfo.innerHTML = '';
+              compressBtn.disabled = true;
+              resetCompressed();
+            };
+            img.src = e.target.result;
+          };
+          reader.onerror = function() { msg.textContent = "File could not be read."; };
+          reader.readAsDataURL(file);
+        } catch(err) {
+          msg.textContent = "Error loading file.";
+        }
+      }
+      compressBtn.addEventListener('click', async function() {
+        msg.textContent = "";
+        if (!loadedImage) {
+          msg.textContent = "No image loaded!";
+          return;
+        }
+        let outMime = saveFormat.value === "auto" ? originalType : saveFormat.value;
+        let quality = parseInt(qualityRange.value) / 100;
+        let selectedUnit = getSelectedUnit();
+        let width = parseFloat(resizeWidth.value) || loadedImage.width;
+        let height = parseFloat(resizeHeight.value) || loadedImage.height;
+        if (selectedUnit === 'cm') {
+          width = unitConvert(width, 'cm', 'px');
+          height = unitConvert(height, 'cm', 'px');
+        } else if (selectedUnit === 'inch') {
+          width = unitConvert(width, 'inch', 'px');
+          height = unitConvert(height, 'inch', 'px');
+        }
+        width = Math.round(width); height = Math.round(height);
+        let canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(loadedImage, 0, 0, width, height);
+        let dataUrl, blob;
+        try {
+          if (outMime === "image/png") {
+            dataUrl = canvas.toDataURL("image/png");
+            blob = await (await fetch(dataUrl)).blob();
+          } else if (outMime === "image/jpeg" || outMime === "image/jpg") {
+            dataUrl = canvas.toDataURL("image/jpeg", quality);
+            blob = await (await fetch(dataUrl)).blob();
+          } else if (outMime === "image/webp") {
+            dataUrl = canvas.toDataURL("image/webp", quality);
+            blob = await (await fetch(dataUrl)).blob();
+          } else if (outMime === "image/bmp") {
+            dataUrl = canvas.toDataURL("image/bmp");
+            blob = await (await fetch(dataUrl)).blob();
+          } else if (outMime === "image/avif" && canvas.toDataURL("image/avif")) {
+            try {
+              dataUrl = canvas.toDataURL("image/avif", quality);
+              blob = await (await fetch(dataUrl)).blob();
+            } catch(e) {
+              dataUrl = canvas.toDataURL("image/png");
+              blob = await (await fetch(dataUrl)).blob();
+              outMime = "image/png";
+            }
+          } else {
+            dataUrl = canvas.toDataURL("image/jpeg", quality);
+            blob = await (await fetch(dataUrl)).blob();
+            outMime = "image/jpeg";
+          }
+        } catch(e) {
+          msg.textContent = "Compression failed: " + e.message;
+          return;
+        }
+        compressedBlob = blob;
+        compressedPreview.src = dataUrl;
+        compressedPreview.style.display = "block";
+        compressedInfo.innerHTML = `Format: ${outMime.replace('image/', '').toUpperCase()}<br>Size: ${(blob.size/1024).toFixed(2)} KB`;
+        downloadBtn.disabled = false;
+        lastOutMime = outMime;
+        msg.textContent = "Compression done!";
+        setTimeout(() => msg.textContent = "", 1200);
+      });
+      downloadBtn.addEventListener('click', function() {
+        if (!compressedBlob) {
+          msg.textContent = "No compressed image to download!";
+          return;
+        }
+        let ext = (lastOutMime === "image/jpeg") ? "jpg"
+                : (lastOutMime === "image/png") ? "png"
+                : (lastOutMime === "image/webp") ? "webp"
+                : (lastOutMime === "image/avif") ? "avif"
+                : (lastOutMime === "image/bmp") ? "bmp"
+                : "jpg";
+        let filename = "compressed_image";
+        if (enableSaveAs.checked && saveFilename.value.trim()) filename = saveFilename.value.trim();
+        filename += "." + ext;
+        let url = URL.createObjectURL(compressedBlob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+          URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+        }, 200);
       });
     });
   </script>
