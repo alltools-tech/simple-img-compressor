@@ -1,5 +1,0 @@
-
-User-agent: *
-Allow: /
-
-Sitemap: https://simple-img-compressor.vercel.app/sitemap.xml
