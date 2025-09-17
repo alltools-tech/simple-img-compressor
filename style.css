@@ -194,3 +194,34 @@ hr {
   main {padding: 1em 0.2em;}
   .main-title {font-size: 1.1em;}
 }
+
+nav, .navbar, #nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e3f2fd !important;
+  border-radius: 12px !important;
+  padding: 0.9em 0.5em !important;
+  margin: 1.2em auto 1.3em auto !important;
+  max-width: 700px !important;
+  box-shadow: 0 2px 12px rgba(33,150,243,0.07) !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 1.06em !important;
+}
+nav a, .navbar a, #nav a {
+  color: #1976d2 !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  margin: 0 0.7em !important;
+  font-size: 1.07em !important;
+  transition: color .2s, border-bottom .2s !important;
+  padding-bottom: 2px !important;
+  border-bottom: 2px solid transparent !important;
+}
+nav a:hover, nav a.active,
+.navbar a:hover, .navbar a.active,
+#nav a:hover, #nav a.active {
+  color: #0e4f1f !important;
+  border-bottom: 2px solid #2196f3 !important;
+}
