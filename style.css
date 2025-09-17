@@ -1,3 +1,4 @@
+/* Universal page settings */
 html, body {
   height: 100%;
   margin: 0;
@@ -7,6 +8,7 @@ html, body {
   color: #222;
 }
 
+/* Header */
 header {
   background: linear-gradient(90deg, #004400 0%, #0e4f1f 100%);
   color: #fff;
@@ -16,6 +18,7 @@ header {
   box-shadow: 0 2px 12px rgba(33,150,243,0.09);
 }
 
+/* Main title */
 .main-title {
   font-size: 2.1em;
   font-weight: 900;
@@ -24,32 +27,42 @@ header {
   text-shadow: 0 3px 16px #084b22, 0 1px 0 #fff5;
   margin: 0;
   padding: 0.18em 0;
+  line-height: 1.1;
   font-family: 'Inter', Arial, sans-serif;
   transition: font-size 0.2s;
-  line-height: 1.1;
 }
 
+/* Consistent NAV style for all pages */
 nav {
-  text-align: center;
-  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e3f2fd;
+  border-radius: 12px;
+  padding: 0.9em 0.5em;
+  margin: 1.2em auto 1.3em auto;
+  max-width: 700px;
+  box-shadow: 0 2px 12px rgba(33,150,243,0.07);
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1.06em;
 }
 nav a {
   color: #1976d2;
+  font-family: inherit;
   font-weight: 600;
   text-decoration: none;
-  margin: 0 0.6em;
-  font-size: 1.05em;
-  transition: color .2s;
+  margin: 0 0.7em;
+  font-size: 1.07em;
+  transition: color .2s, border-bottom .2s;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
 }
-nav a:hover {
-  color: #185a9d;
-}
-nav a.active {
+nav a:hover, nav a.active {
   color: #0e4f1f;
-  font-weight: bold;
   border-bottom: 2px solid #2196f3;
 }
 
+/* Main content box */
 main {
   max-width: 700px;
   margin: 2em auto;
@@ -58,15 +71,16 @@ main {
   border-radius: 16px;
   box-shadow: 0 4px 32px rgba(33,150,243,.07);
   box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
+/* Headings */
 h2 {
   color: #185a9d;
   font-size: 1.6em;
   font-weight: 800;
   margin-top: 0;
 }
-
 h3 {
   color: #1976d2;
   font-size: 1.19em;
@@ -74,18 +88,21 @@ h3 {
   margin-top: 1.2em;
 }
 
+/* Lists */
 ul, ol {
   color: #185a9d;
   margin-bottom: 1em;
   padding-left: 1.2em;
 }
 
+/* Horizontal rule */
 hr {
   border: none;
   border-top: 1px solid #e3f2fd;
   margin: 0 0 1.2em 0;
 }
 
+/* Highlight box */
 .highlight {
   background: #e3f2fd;
   border-radius: 8px;
@@ -93,15 +110,18 @@ hr {
   margin-bottom: 1.1em;
 }
 
-.about-contact, .contact-box {
+/* About, Terms, Contact, etc. */
+.about-contact, .contact-box, .terms-box, .blog-box {
   background: #e3f2fd;
   padding: 0.8em 1.2em;
   border-radius: 10px;
   color: #1976d2;
   margin-top: 1em;
   margin-bottom: 1em;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
+/* FAQ section */
 .faq {
   margin-top: 1.5em;
 }
@@ -112,12 +132,14 @@ hr {
   margin-bottom: 1.2em;
 }
 
+/* Section title */
 .section-title {
   color: #1976d2;
   font-weight: 700;
   margin-top: 1.2em;
 }
 
+/* Blog post style */
 .post {
   margin-bottom: 2em;
   border-bottom: 1px solid #e3f2fd;
@@ -138,6 +160,7 @@ hr {
   color: #222;
 }
 
+/* Footer */
 .footer {
   text-align: center;
   color: #999;
@@ -147,41 +170,27 @@ hr {
   position: relative;
 }
 
+/* Responsive styles */
 @media (max-width: 1020px) {
   main {max-width: 99vw; padding: 1.2em 0.4em 1em 0.4em;}
+  nav {max-width: 99vw;}
 }
 @media (max-width: 900px) {
   main {padding: 1.2em 0.2em 0.8em 0.2em;}
 }
+@media (max-width: 700px) {
+  nav {
+    max-width: 99vw;
+    padding: 0.7em 0.2em;
+    font-size: 1em;
+    border-radius: 8px;
+  }
+  nav a {
+    font-size: 1em;
+    margin: 0 0.4em;
+  }
+}
 @media (max-width: 600px) {
   main {padding: 1em 0.2em;}
   .main-title {font-size: 1.1em;}
-}
-
-nav {
-  text-align: center;
-  margin: 1em auto 1.2em auto;
-  background: #e3f2fd;
-  border-radius: 10px;
-  padding: 0.7em 0;
-  max-width: 700px;
-  box-shadow: 0 2px 12px rgba(33,150,243,0.04);
-  font-family: 'Inter', Arial, sans-serif;
-}
-nav a {
-  color: #1976d2;
-  font-family: inherit;
-  font-weight: 600;
-  text-decoration: none;
-  margin: 0 0.6em;
-  font-size: 1.05em;
-  transition: color .2s;
-}
-nav a:hover {
-  color: #185a9d;
-}
-nav a.active {
-  color: #0e4f1f;
-  font-weight: bold;
-  border-bottom: 2px solid #2196f3;
 }
