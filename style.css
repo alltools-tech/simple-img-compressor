@@ -1,46 +1,159 @@
-/* ===== Basic Page Styling ===== */
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  line-height: 1.6;
-  background-color: #121212; /* dark background */
-  color: #e0e0e0; /* light text */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+  color: #222;
 }
 
-/* ===== Navbar Styling ===== */
+header {
+  background: linear-gradient(90deg, #004400 0%, #0e4f1f 100%);
+  color: #fff;
+  padding: 1.1em 0 1em;
+  text-align: center;
+  border-bottom: 2px solid #2196f3;
+  box-shadow: 0 2px 12px rgba(33,150,243,0.09);
+}
+
+.main-title {
+  font-size: 2.1em;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: #fff;
+  text-shadow: 0 3px 16px #084b22, 0 1px 0 #fff5;
+  margin: 0;
+  padding: 0.18em 0;
+  font-family: 'Inter', Arial, sans-serif;
+  transition: font-size 0.2s;
+  line-height: 1.1;
+}
+
 nav {
-  background: #1e1e1e; /* dark grey background */
-  padding: 14px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  text-align: center;
+  margin-top: 1em;
 }
-
 nav a {
-  margin-right: 20px;
+  color: #1976d2;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 17px; /* bigger font */
-  color: #ffffff; /* white text */
-  transition: color 0.2s ease-in-out;
+  margin: 0 0.6em;
+  font-size: 1.05em;
+  transition: color .2s;
 }
-
 nav a:hover {
-  color: #00bcd4; /* hover par cyan blue */
-  text-decoration: underline;
+  color: #185a9d;
+}
+nav a.active {
+  color: #0e4f1f;
+  font-weight: bold;
+  border-bottom: 2px solid #2196f3;
 }
 
-nav a:visited {
-  color: #cccccc; /* visited links light grey */
+main {
+  max-width: 700px;
+  margin: 2em auto;
+  background: #fff;
+  padding: 2.2em 2em 1.5em;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(33,150,243,.07);
+  box-sizing: border-box;
 }
 
-/* ===== Headings ===== */
-h1, h2 {
-  color: #ffffff;
+h2 {
+  color: #185a9d;
+  font-size: 1.6em;
+  font-weight: 800;
+  margin-top: 0;
 }
 
-/* ===== Content Box (optional use) ===== */
-.container {
-  background: #1e1e1e;
-  padding: 20px;
+h3 {
+  color: #1976d2;
+  font-size: 1.19em;
+  font-weight: 700;
+  margin-top: 1.2em;
+}
+
+ul, ol {
+  color: #185a9d;
+  margin-bottom: 1em;
+  padding-left: 1.2em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e3f2fd;
+  margin: 0 0 1.2em 0;
+}
+
+.highlight {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin-bottom: 1.1em;
+}
+
+.about-contact, .contact-box {
+  background: #e3f2fd;
+  padding: 0.8em 1.2em;
   border-radius: 10px;
-  box-shadow: 0
+  color: #1976d2;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.faq {
+  margin-top: 1.5em;
+}
+.faq h3 {
+  margin-top: 2em;
+}
+.faq p {
+  margin-bottom: 1.2em;
+}
+
+.section-title {
+  color: #1976d2;
+  font-weight: 700;
+  margin-top: 1.2em;
+}
+
+.post {
+  margin-bottom: 2em;
+  border-bottom: 1px solid #e3f2fd;
+  padding-bottom: 1em;
+}
+.post-title {
+  font-size: 1.23em;
+  font-weight: 700;
+  color: #2196f3;
+  margin-bottom: 0.3em;
+}
+.post-date {
+  color: #999;
+  font-size: 0.99em;
+  margin-bottom: 0.5em;
+}
+.post-content {
+  color: #222;
+}
+
+.footer {
+  text-align: center;
+  color: #999;
+  font-size: .98em;
+  margin: 2.5em 0 0.3em;
+  letter-spacing: .02em;
+  position: relative;
+}
+
+@media (max-width: 1020px) {
+  main {max-width: 99vw; padding: 1.2em 0.4em 1em 0.4em;}
+}
+@media (max-width: 900px) {
+  main {padding: 1.2em 0.2em 0.8em 0.2em;}
+}
+@media (max-width: 600px) {
+  main {padding: 1em 0.2em;}
+  .main-title {font-size: 1.1em;}
+}
