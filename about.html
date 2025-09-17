@@ -74,4 +74,16 @@
   &copy; 2025 Smart Image Compressor | Fast, Free & Secure
 </div>
 </body>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var nav = document.querySelector('nav');
+  var toggle = document.querySelector('.nav-toggle');
+  if(toggle){
+    toggle.addEventListener('click', function() {
+      nav.classList.toggle('show-menu');
+    });
+  }
+});
+</script>
 </html>
