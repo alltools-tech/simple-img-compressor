@@ -7,7 +7,7 @@ body {
   color: #e0e0e0; /* light text */
 }
 
-/* ===== Navbar Styling (Same for all pages) ===== */
+/* ===== Navbar Styling ===== */
 nav {
   background: #1e1e1e; /* dark grey background */
   padding: 14px 20px;
@@ -19,7 +19,7 @@ nav a {
   margin-right: 20px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 17px; /* 👈 bigger font size */
+  font-size: 17px; /* bigger font */
   color: #ffffff; /* white text */
   transition: color 0.2s ease-in-out;
 }
@@ -38,37 +38,9 @@ h1, h2 {
   color: #ffffff;
 }
 
-/* ===== Form Styling (for contact page) ===== */
-form {
+/* ===== Content Box (optional use) ===== */
+.container {
   background: #1e1e1e;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-  max-width: 500px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #444;
-  border-radius: 6px;
-  font-size: 15px;
-  background: #2b2b2b;
-  color: #ffffff;
-}
-
-button {
-  background: #00bcd4;
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-button:hover {
-  background: #0097a7;
-}
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0
