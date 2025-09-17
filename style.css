@@ -157,3 +157,31 @@ hr {
   main {padding: 1em 0.2em;}
   .main-title {font-size: 1.1em;}
 }
+
+nav {
+  text-align: center;
+  margin: 1em auto 1.2em auto;
+  background: #e3f2fd;
+  border-radius: 10px;
+  padding: 0.7em 0;
+  max-width: 700px;
+  box-shadow: 0 2px 12px rgba(33,150,243,0.04);
+  font-family: 'Inter', Arial, sans-serif;
+}
+nav a {
+  color: #1976d2;
+  font-family: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0 0.6em;
+  font-size: 1.05em;
+  transition: color .2s;
+}
+nav a:hover {
+  color: #185a9d;
+}
+nav a.active {
+  color: #0e4f1f;
+  font-weight: bold;
+  border-bottom: 2px solid #2196f3;
+}
