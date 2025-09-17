@@ -3,64 +3,72 @@ body {
   font-family: Arial, sans-serif;
   margin: 20px;
   line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #121212; /* dark background */
+  color: #e0e0e0; /* light text */
 }
 
-/* ===== Navbar Styling ===== */
+/* ===== Navbar Styling (Same for all pages) ===== */
 nav {
-  background: #ffffff;
-  padding: 10px;
+  background: #1e1e1e; /* dark grey background */
+  padding: 14px 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
 
 nav a {
-  margin-right: 15px;
+  margin-right: 20px;
   text-decoration: none;
   font-weight: bold;
-  color: #0073e6;
+  font-size: 17px; /* 👈 bigger font size */
+  color: #ffffff; /* white text */
   transition: color 0.2s ease-in-out;
 }
 
 nav a:hover {
-  color: #005bb5;
+  color: #00bcd4; /* hover par cyan blue */
   text-decoration: underline;
+}
+
+nav a:visited {
+  color: #cccccc; /* visited links light grey */
 }
 
 /* ===== Headings ===== */
 h1, h2 {
-  color: #222;
+  color: #ffffff;
 }
 
 /* ===== Form Styling (for contact page) ===== */
 form {
-  background: #fff;
+  background: #1e1e1e;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
   max-width: 500px;
 }
 
 input, textarea {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin: 8px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 15px;
+  background: #2b2b2b;
+  color: #ffffff;
 }
 
 button {
-  background: #0073e6;
+  background: #00bcd4;
   color: #fff;
   border: none;
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 button:hover {
-  background: #005bb5;
+  background: #0097a7;
 }
