@@ -1,0 +1,66 @@
+/* ===== Basic Page Styling ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* ===== Navbar Styling ===== */
+nav {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #0073e6;
+  transition: color 0.2s ease-in-out;
+}
+
+nav a:hover {
+  color: #005bb5;
+  text-decoration: underline;
+}
+
+/* ===== Headings ===== */
+h1, h2 {
+  color: #222;
+}
+
+/* ===== Form Styling (for contact page) ===== */
+form {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+button {
+  background: #0073e6;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #005bb5;
+}
