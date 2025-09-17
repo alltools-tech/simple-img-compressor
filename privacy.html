@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="style.css">
   <title>Privacy Policy | Smart Image Compressor and Converter</title>
   <meta name="description" content="Privacy Policy: Your images and data are never uploaded or tracked.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +23,14 @@
   </style>
 </head>
 <body>
+
 <nav>
-  <a href="index.html">Home</a> |
-  <a href="about.html">About</a> |
-  <a href="privacy.html">Privacy Policy</a> |
-  <a href="terms.html">Terms</a> |
-  <a href="contact.html">Contact</a> |
+  <button class="nav-toggle" aria-label="Show menu">☰ Menu</button>
+  <a href="index.html" class="active">Home</a>
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms</a>
+  <a href="contact.html">Contact</a>
   <a href="blog.html">Blog</a>
 </nav>
 <hr>
@@ -69,3 +72,14 @@
 </div>
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var nav = document.querySelector('nav');
+  var toggle = document.querySelector('.nav-toggle');
+  if(toggle){
+    toggle.addEventListener('click', function() {
+      nav.classList.toggle('show-menu');
+    });
+  }
+});
+</script>
