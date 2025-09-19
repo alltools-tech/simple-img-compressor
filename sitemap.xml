@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset 
-xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> <url> 
-<loc>https://simple-img-compressor.vercel.app/</loc> 
-<changefreq>weekly</changefreq> <priority>1.0</priority> </url></urlset>
+<!DOCTYPE html>
+<!--XML to HTML conversion for https://simple-img-compressor.vercel.app/sitemap.xml -->
+<head>
+<title>https://simple-img-compressor.vercel.app/sitemap.xml</title>
+</head>
+<body>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;<a href="http://www.sitemaps.org/schemas/sitemap/0.9">http://www.sitemaps.org/schemas/sitemap/0.9</a>&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;<a href="https://simple-img-compressor.vercel.app/">https://simple-img-compressor.vercel.app/</a>&lt;/loc&gt;
+    &lt;lastmod&gt;2025-09-16&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</pre>
+</body>
