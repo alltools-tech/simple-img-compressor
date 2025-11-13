@@ -86,6 +86,20 @@
     #about-popup{background:#e3f2fd;border-radius:16px;max-width:720px;border:2px solid #90caf9;padding:1em 1.2em;color:#185a9d;line-height:1.6}
     #about-close{position:absolute;right:13px;top:10px;background:transparent;border:none;color:#185a9d;font-size:1.45em;font-weight:bold;cursor:pointer}
     @media (max-width:900px){.preview-row{flex-direction:column;gap:1em}.card{max-width:99vw}}
+    /* style for More Tools button (small variant) */
+    .more-tools {
+      padding: .46em 1em;
+      border-radius: 6px;
+      background: linear-gradient(90deg,var(--accent-2) 10%,var(--accent-1));
+      color: #06314a;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    @media (max-width:480px){
+      .more-tools { padding: .42em .8em; font-size: 0.92em; }
+    }
   </style>
 </head>
 <body>
@@ -186,9 +200,15 @@
         </select>
       </div>
 
-      <div style="margin-top:1em;display:flex;gap:.8em;align-items:center">
+      <div style="margin-top:1em;display:flex;gap:.8em;align-items:center;flex-wrap:wrap">
         <button id="compressBtn" class="btn" disabled>Compress Image</button>
-        <button id="downloadBtn" class="btn" disabled>Download Compressed</button>
+
+        <!-- Download + More Tools button group -->
+        <div style="display:flex;gap:.6em;align-items:center">
+          <button id="downloadBtn" class="btn" disabled>Download Compressed</button>
+          <button id="moreToolsBtn" class="more-tools" type="button" title="More tools at skycommunics.com">More Tools</button>
+        </div>
+
         <span id="msg" style="color:var(--danger);margin-left:.6em"></span>
       </div>
     </div>
@@ -272,6 +292,7 @@
     const aboutBtnFooter = document.getElementById('aboutBtnFooter');
     const aboutModalBg = document.getElementById('about-modal-bg');
     const aboutClose = document.getElementById('about-close');
+    const moreToolsBtn = document.getElementById('moreToolsBtn');
 
     // state variables (kept same)
     let cropper = null;
@@ -693,6 +714,12 @@
       let a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a);
       a.click();
       setTimeout(function(){ URL.revokeObjectURL(url); document.body.removeChild(a); }, 200);
+    });
+
+    // More Tools button - opens skycommunics site in new tab
+    moreToolsBtn && moreToolsBtn.addEventListener('click', function() {
+      // opens skycommunics main landing where future tools and Kill File will be reachable
+      window.open('https://skycommunics.com', '_blank', 'noopener');
     });
 
     // Nav toggle simple
