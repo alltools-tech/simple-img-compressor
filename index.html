@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#21d4fd" />
+
+<link rel="apple-touch-icon" href="/icons/icon-192.png" />
+<link rel="apple-mobile-web-app-capable" content="yes">
+
 google-site-verification=omReey7kjqSBJiJtRHiduTHCim7RroqTu9pO0sjJLes
 <link rel="stylesheet" href="style.css">
 <!-- Google tag (gtag.js) -->
@@ -929,4 +935,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/service-worker.js")
+    .then(() => console.log("Service Worker Registered"));
+}
 </script>
