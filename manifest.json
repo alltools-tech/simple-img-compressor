@@ -1,14 +1,14 @@
 {
   "name": "Smart Image Compressor and Converter",
-  "short_name": "Img Compressor",
-  "description": "Fastest online image compressor and converter tool — works offline, secure, free, no upload.",
-  "start_url": "/index.html",
+  "short_name": "SmartImg",
+  "description": "Compress & convert images (JPEG, PNG, WebP, AVIF, HEIC, HEIF, BMP) locally in your browser — fast, private and free.",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f2027",
-  "theme_color": "#21d4fd",
   "orientation": "portrait-primary",
-
+  "theme_color": "#21d4fd",
+  "background_color": "#ffffff",
+  "lang": "en",
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -21,6 +21,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
