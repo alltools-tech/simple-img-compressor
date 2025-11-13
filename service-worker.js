@@ -1,21 +1,37 @@
-self.addEventListener("install", event => {
+const CACHE_NAME = "img-compressor-v1";
+const OFFLINE_URLS = [
+  "/",
+  "/index.html",
+  "/style.css"
+];
+
+// Install
+self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open("app-cache-v1").then(cache => {
-      return cache.addAll([
-        "/",
-        "/index.html",
-        "/style.css",
-        "/script.js",
-        "/manifest.json",
-        "/icons/icon-192.png",
-        "/icons/icon-512.png"
-      ]);
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(OFFLINE_URLS);
     })
   );
+  self.skipWaiting();
 });
 
-self.addEventListener("fetch", event => {
+// Activate
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME) return caches.delete(key);
+      }))
+    )
+  );
+  self.clients.claim();
+});
+
+// Fetch
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then(resp => resp || fetch(event.request))
+    caches.match(event.request).then(cachedRes => {
+      return cachedRes || fetch(event.request);
+    })
   );
 });
